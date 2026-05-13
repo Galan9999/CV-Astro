@@ -7,6 +7,7 @@ import EngineeringLog   from '@components/EngineeringLog.astro';
 import GitTree          from '@components/GitTree.astro';
 import SkillsRadar      from '@components/SkillsRadar.astro';
 import PrintButton      from '@components/PrintButton.astro';
+import ContactForm      from '@components/ContactForm.astro';
 import cvData from '@data/cv.json';
 
 const { meta, stack, experience } = cvData;
@@ -112,6 +113,14 @@ const currentYear = new Date().getFullYear();
     <div class="mb-16">
       <About />
     </div>
+
+    <section id="contacto" class="mb-16" aria-label="Contact">
+      <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
+        <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+        Hablemos
+      </h2>
+      <ContactForm />
+    </section>
 
     <footer class="border-t pt-8" style="border-color: var(--border);" role="contentinfo">
       <p class="font-mono text-xs text-center" style="color: var(--text-secondary);">

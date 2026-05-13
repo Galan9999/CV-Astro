@@ -1,0 +1,86 @@
+---
+---
+
+<form
+  name="contact"
+  method="POST"
+  action="/thanks"
+  data-netlify="true"
+  class="flex flex-col gap-4"
+>
+  <input type="hidden" name="form-name" value="contact" />
+
+  <div>
+    <label for="cf-name" class="sr-only">Nombre</label>
+    <input
+      id="cf-name"
+      type="text"
+      name="name"
+      placeholder="Nombre"
+      required
+      class="field w-full px-4 py-3 text-sm"
+    />
+  </div>
+
+  <div>
+    <label for="cf-email" class="sr-only">Email</label>
+    <input
+      id="cf-email"
+      type="email"
+      name="email"
+      placeholder="Email"
+      required
+      class="field w-full px-4 py-3 text-sm"
+    />
+  </div>
+
+  <div>
+    <label for="cf-message" class="sr-only">Mensaje</label>
+    <textarea
+      id="cf-message"
+      name="message"
+      rows="4"
+      placeholder="Mensaje"
+      required
+      class="field w-full px-4 py-3 text-sm resize-y"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="submit-btn self-start px-6 py-3 text-sm font-semibold">
+    Enviar mensaje
+  </button>
+</form>
+
+<style>
+  .field {
+    display: block;
+    font-family: var(--font-display);
+    background: var(--bg-base);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+  }
+
+  .field::placeholder {
+    color: var(--text-secondary);
+  }
+
+  .field:focus-visible {
+    border-color: var(--accent-from);
+  }
+
+  .submit-btn {
+    background: var(--accent-from);
+    color: var(--on-accent);
+    border: var(--border-width) solid var(--accent-from);
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+
+  .submit-btn:hover,
+  .submit-btn:focus-visible {
+    opacity: 0.9;
+    box-shadow: var(--shadow-hover);
+  }
+</style>
