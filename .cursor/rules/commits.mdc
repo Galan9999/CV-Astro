@@ -1,0 +1,51 @@
+---
+description: Conventional Commits rules for Meta-CV — always active
+alwaysApply: true
+---
+
+# Commit Convention
+
+All commits must follow **Conventional Commits v1.0**.
+
+## Format
+
+```
+<type>(<optional scope>): <short description>
+
+[optional body — explain WHY, not WHAT]
+```
+
+## Allowed Types
+
+| Type | When to use |
+|------|-------------|
+| `feat` | New feature or visible behaviour |
+| `fix` | Bug fix |
+| `perf` | Performance improvement |
+| `a11y` | Accessibility improvement (project-local extension) |
+| `docs` | Documentation only |
+| `chore` | Tooling, config, dependencies |
+| `refactor` | Code restructure without behaviour change |
+| `test` | Adding or fixing tests |
+| `style` | Formatting, whitespace (no logic change) |
+
+## Scopes (optional but recommended)
+
+`cv`, `layout`, `component`, `print`, `config`, `deps`, `ci`
+
+## Rules
+
+- Subject line ≤ 72 characters, imperative mood ("add" not "added").
+- No period at the end of the subject line.
+- Breaking changes: add `!` after the type (`feat!:`) and explain in the body.
+- Reference issues in the footer: `Closes #12`.
+
+## Examples
+
+```
+feat(cv): add publications section from cv.json
+fix(print): prevent page break inside experience entries
+perf(images): convert hero to WebP with srcset
+a11y(nav): add skip-to-content link
+chore(deps): upgrade astro to 4.8.0
+```

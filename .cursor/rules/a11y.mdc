@@ -1,0 +1,37 @@
+---
+description: Accessibility rules for Meta-CV — auto-attached to Astro components
+globs: ["src/**/*.astro", "src/**/*.tsx", "src/**/*.ts"]
+alwaysApply: false
+---
+
+# Accessibility Rules (WCAG 2.1 AA)
+
+## Structure
+
+- One `<main>` per page; use `<header>`, `<nav>`, `<footer>` landmarks.
+- `<section>` and `<article>` elements must have an accessible name via `aria-labelledby` or `aria-label`.
+- Heading levels must be sequential — never skip from `h2` to `h4`.
+
+## Images & Icons
+
+- Informative images: descriptive `alt` text.
+- Decorative images: `alt=""`.
+- SVG icons acting as buttons/links: add `aria-label` on the parent or a visually-hidden `<span>`.
+
+## Keyboard & Focus
+
+- Every interactive element must be Tab-reachable.
+- Never set `outline: none` without a visible focus replacement.
+- Add a skip-to-content link as the first child of `<body>`.
+
+## Color & Contrast
+
+- Normal text: contrast ratio ≥ 4.5:1.
+- Large text (≥ 18 pt / 14 pt bold): contrast ratio ≥ 3:1.
+- Never convey information through color alone.
+
+## Quick axe check
+
+```bash
+npx axe http://localhost:4321 --exit
+```

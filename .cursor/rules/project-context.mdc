@@ -1,0 +1,29 @@
+---
+description: Core project context for Meta-CV — always active
+alwaysApply: true
+---
+
+# Meta-CV — Project Context
+
+Astro 4 + TypeScript + Tailwind CV site. Source of truth: `src/data/cv.json` (JSON Resume spec). Components are purely presentational; no data is hardcoded in `.astro` files.
+
+## Non-negotiable rules
+
+- **cv.json only** — never hardcode personal data in components.
+- **No client JS by default** — use `client:*` directives only when interaction demands it.
+- **Semantic HTML** — proper landmarks, sequential headings.
+- **Performance budget** — LCP ≤ 2.5 s, TBT = 0, CLS = 0.
+- **WCAG 2.1 AA** — all images need `alt`; icons need `aria-label`.
+- **Conventional Commits** — `feat:`, `fix:`, `chore:`, `docs:`, `perf:`.
+
+## Key paths
+
+| Path | Purpose |
+|------|---------|
+| `src/data/cv.json` | CV content (edit here) |
+| `src/content/` | Content Collections |
+| `src/components/` | Presentational components |
+| `astro.config.mjs` | Astro config |
+| `tailwind.config.mjs` | Design tokens |
+
+See `AGENTS.md` for full shared spec.

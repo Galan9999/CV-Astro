@@ -1,0 +1,38 @@
+---
+description: Performance rules for Meta-CV — auto-attached to Astro components and config files
+globs: ["src/**/*.astro", "src/**/*.ts", "astro.config.mjs", "public/**"]
+alwaysApply: false
+---
+
+# Performance Rules
+
+Budget: **LCP ≤ 2.5 s · TBT = 0 · CLS = 0**
+
+## Images
+
+- Always set `width` + `height` on `<img>` to prevent CLS.
+- Above-fold images: `loading="eager"` + `<link rel="preload">` in `<head>`.
+- Below-fold images: `loading="lazy"`.
+- Serve images no larger than their rendered size; use `srcset` for responsive.
+
+## JavaScript
+
+- Zero JS on initial page load is the default.
+- Choose the weakest `client:*` directive that satisfies the use case:
+  `client:idle` > `client:visible` > `client:load` > `client:only`.
+
+## Fonts
+
+- Self-host in `public/fonts/`; use `font-display: swap`.
+- Include only required weights and subsets.
+
+## CSS
+
+- Tailwind purge must be active in production.
+- No inline `style` attributes with layout-affecting properties unless unavoidable.
+
+## Checklist before committing a component
+
+- [ ] No new JS bundle introduced unintentionally
+- [ ] Images have dimensions
+- [ ] No render-blocking `<link>` or `<script>` added to `<head>`
