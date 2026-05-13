@@ -1,0 +1,107 @@
+/* ─── base (sleek — default dark) ──────────────────── */
+:root,
+[data-theme="sleek"] {
+  --bg-base:        #020617;
+  --bg-surface:     rgba(15, 23, 42, 0.5);
+  --bg-elevated:    rgba(30, 41, 59, 0.8);
+
+  --border:         rgba(51, 65, 85, 0.6);
+  --border-hover:   rgba(99, 102, 241, 0.5);
+  --border-width:   1px;
+
+  --text-primary:   #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-mono:      #67e8f9;
+
+  --accent-from:    #6366f1;
+  --accent-to:      #22d3ee;
+
+  --shadow:         none;
+  --shadow-hover:   none;
+  --radius:         12px;
+
+  --focus-ring:     2px solid #6366f1;
+  --focus-offset:   3px;
+
+  --font-display:   'Geist Sans', system-ui, sans-serif;
+  --font-mono:      'Geist Mono', 'Fira Code', monospace;
+}
+
+/* ─── neo-brutalism ─────────────────────────────────── */
+[data-theme="neo-brutalism"] {
+  --bg-base:        #fafafa;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #f0f0f0;
+
+  --border:         #000000;
+  --border-hover:   #000000;
+  --border-width:   3px;
+
+  --text-primary:   #000000;
+  --text-secondary: #333333;
+  --text-mono:      #1a1a1a;
+
+  --accent-from:    #ff6b00;
+  --accent-to:      #ff6b00;
+
+  --shadow:         4px 4px 0px #000000;
+  --shadow-hover:   6px 6px 0px #000000;
+  --radius:         0px;
+
+  --focus-ring:     3px solid #000000;
+  --focus-offset:   2px;
+
+  --font-display:   'Space Grotesk', system-ui, sans-serif;
+  --font-mono:      'Geist Mono', monospace;
+}
+
+/* ─── high-contrast / a11y ──────────────────────────── */
+[data-theme="high-contrast"] {
+  --bg-base:        #000000;
+  --bg-surface:     #0a0a0a;
+  --bg-elevated:    #1a1a1a;
+
+  --border:         #ffffff;
+  --border-hover:   #ffff00;
+  --border-width:   2px;
+
+  --text-primary:   #ffffff;
+  --text-secondary: #ffffcc;
+  --text-mono:      #ffff00;
+
+  --accent-from:    #ffff00;
+  --accent-to:      #00ffff;
+
+  --shadow:         none;
+  --shadow-hover:   none;
+  --radius:         4px;
+
+  --focus-ring:     3px solid #ffff00;
+  --focus-offset:   3px;
+}
+
+/* ─── global focus rule — all themes ───────────────── */
+*:focus-visible {
+  outline:        var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ─── smooth theme transition ───────────────────────── */
+*, *::before, *::after {
+  transition:
+    background-color 200ms ease,
+    border-color     200ms ease,
+    color            150ms ease,
+    box-shadow       200ms ease;
+}
+
+/* ─── sr-only utility ───────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}
