@@ -8,7 +8,7 @@ const skills = cvData.skills_radar as Skill[]
 const categoryColor: Record<string, string> = {
   frontend: 'var(--accent-from)',
   craft:    'var(--accent-to)',
-  systems:  '#a78bfa',
+  systems:  'var(--tag-violet)',
 }
 
 const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)

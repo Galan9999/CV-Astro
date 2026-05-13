@@ -80,6 +80,16 @@
   --focus-offset:   3px;
 }
 
+/* ─── semantic tag / badge colors ────────────────────── */
+:root {
+  --on-accent:   #000000;
+  --tag-violet:  #a78bfa;
+  --tag-amber:   #f59e0b;
+  --tag-emerald: #34d399;
+  --tag-red:     #ef4444;
+  --tag-muted:   #64748b;
+}
+
 /* ─── global focus rule — all themes ───────────────── */
 *:focus-visible {
   outline:        var(--focus-ring);

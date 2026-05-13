@@ -28,14 +28,14 @@ function parseCommit(c: GHCommit): ParsedCommit {
 }
 
 const badgeColor: Record<string, string> = {
-  feat:     '#22d3ee',
-  fix:      '#f59e0b',
-  perf:     '#34d399',
-  a11y:     '#a78bfa',
-  sec:      '#ef4444',
-  docs:     '#94a3b8',
-  chore:    '#64748b',
-  refactor: '#6366f1',
+  feat:     'var(--accent-to)',
+  fix:      'var(--tag-amber)',
+  perf:     'var(--tag-emerald)',
+  a11y:     'var(--tag-violet)',
+  sec:      'var(--tag-red)',
+  docs:     'var(--text-secondary)',
+  chore:    'var(--tag-muted)',
+  refactor: 'var(--accent-from)',
 }
 
 let commits: ParsedCommit[] = []
@@ -96,7 +96,7 @@ try {
               </code>
               <span
                 class="shrink-0 px-1.5 py-0.5 rounded text-xs"
-                style={`background: color-mix(in srgb, ${badgeColor[c.type] ?? '#64748b'} 15%, transparent); color: ${badgeColor[c.type] ?? '#64748b'};`}
+                style={`background: color-mix(in srgb, ${badgeColor[c.type] ?? 'var(--tag-muted)'} 15%, transparent); color: ${badgeColor[c.type] ?? 'var(--tag-muted)'};`}
               >
                 {c.type}{c.scope ? `(${c.scope})` : ''}
               </span>

@@ -10,7 +10,7 @@ const steps = [
     tool:    'Claude 3.5 Sonnet',
     role:    'Auditoría técnica',
     detail:  'Code review, WCAG compliance, coherencia de tokens entre temas, QA de decisiones arquitectónicas.',
-    accent:  '#a78bfa',
+    accent:  'var(--tag-violet)',
   },
   {
     tool:    'Claude CLI',
@@ -47,7 +47,7 @@ const steps = [
         <li style="display: flex; gap: 1rem; align-items: flex-start;">
           <!-- step indicator + connector -->
           <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
-            <div style={`width: 32px; height: 32px; border-radius: 50%; background: ${s.accent}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #000; font-family: var(--font-mono);`}>
+            <div style={`width: 32px; height: 32px; border-radius: 50%; background: ${s.accent}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--on-accent); font-family: var(--font-mono);`}>
               {i + 1}
             </div>
             {i < steps.length - 1 && (

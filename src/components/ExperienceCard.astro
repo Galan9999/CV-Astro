@@ -14,11 +14,11 @@ interface Props {
 const { company, role, period, achievements, tech } = Astro.props
 
 const tagColors: Record<string, string> = {
-  performance:  '#22d3ee',
-  rbac:         '#a78bfa',
-  architecture: '#6366f1',
-  testing:      '#34d399',
-  security:     '#f59e0b',
+  performance:  'var(--accent-to)',
+  rbac:         'var(--tag-violet)',
+  architecture: 'var(--accent-from)',
+  testing:      'var(--tag-emerald)',
+  security:     'var(--tag-amber)',
 }
 ---
 
@@ -63,7 +63,7 @@ const tagColors: Record<string, string> = {
   <div style="display: flex; flex-wrap: wrap; gap: 0.375rem;">
     {tech.map(t => (
       <span
-        style="font-family: var(--font-mono); font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; background: var(--bg-elevated); color: var(--text-secondary);"
+        style="font-family: var(--font-mono); font-size: 0.75rem; padding: 2px 8px; border-radius: var(--radius); background: var(--bg-elevated); color: var(--text-secondary);"
       >
         {t}
       </span>
