@@ -95,7 +95,7 @@ const currentYear = new Date().getFullYear();
             company={exp.company}
             role={exp.role}
             period={exp.period}
-            achievements={exp.achievements}
+            achievements={exp.achievements.map(text => ({ text }))}
             tech={exp.tech}
           />
         ))}
