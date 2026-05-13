@@ -11,10 +11,11 @@
 
   --text-primary:   #f8fafc;
   --text-secondary: #94a3b8;
-  --text-mono:      #67e8f9;
+  --text-mono:      #fb7185;
 
-  --accent-from:    #6366f1;
-  --accent-to:      #22d3ee;
+  --accent-from:    #e11d48;
+  --accent-to:      #fb7185;
+  --glow-accent:    rgba(225, 29, 72, 0.45);
 
   --shadow:         none;
   --shadow-hover:   none;
@@ -41,8 +42,9 @@
   --text-secondary: #333333;
   --text-mono:      #1a1a1a;
 
-  --accent-from:    #ff6b00;
-  --accent-to:      #ff6b00;
+  --accent-from:    #e11d48;
+  --accent-to:      #e11d48;
+  --glow-accent:    transparent;
 
   --shadow:         4px 4px 0px #000000;
   --shadow-hover:   6px 6px 0px #000000;
@@ -69,8 +71,9 @@
   --text-secondary: #ffffcc;
   --text-mono:      #ffff00;
 
-  --accent-from:    #ffff00;
-  --accent-to:      #00ffff;
+  --accent-from:    #f59e0b;
+  --accent-to:      #fcd34d;
+  --glow-accent:    transparent;
 
   --shadow:         none;
   --shadow-hover:   none;
@@ -82,7 +85,7 @@
 
 /* ─── semantic tag / badge colors ────────────────────── */
 :root {
-  --on-accent:   #000000;
+  --on-accent:   #ffffff;
   --tag-violet:  #a78bfa;
   --tag-amber:   #f59e0b;
   --tag-emerald: #34d399;
