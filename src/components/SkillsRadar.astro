@@ -25,9 +25,9 @@ const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)
 
   <div class="space-y-3">
     {sorted.map(s => (
-      <div>
+      <div class="skill-row">
         <div class="flex justify-between text-sm mb-1.5">
-          <span style="color: var(--text-primary);">{s.skill}</span>
+          <span class="skill-label" style="color: var(--text-primary);">{s.skill}</span>
           <span class="font-mono text-xs" style="color: var(--text-secondary);">{s.mastery}%</span>
         </div>
         <div
@@ -36,11 +36,12 @@ const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)
         >
           <div
             role="progressbar"
+            tabindex="0"
             aria-valuenow={s.mastery}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-label={`${s.skill}: ${s.mastery}%`}
-            class="h-full rounded-full transition-all duration-700"
+            class="skill-fill h-full rounded-full"
             style={`width: ${s.mastery}%; background: ${categoryColor[s.category] ?? 'var(--accent-from)'};`}
           />
         </div>
@@ -61,3 +62,30 @@ const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)
     ))}
   </div>
 </section>
+
+<style>
+  .skill-fill {
+    transition: width 600ms ease,
+                background-color 200ms ease,
+                box-shadow 200ms ease;
+  }
+
+  .skill-row:hover .skill-fill,
+  .skill-row:focus-within .skill-fill {
+    background-color: var(--accent-from);
+    box-shadow: 0 0 15px var(--glow-accent);
+  }
+
+  .skill-row:hover .skill-label,
+  .skill-row:focus-within .skill-label {
+    color: var(--text-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-fill { transition: none; }
+  }
+
+  @media print {
+    .skill-fill { display: none; }
+  }
+</style>
