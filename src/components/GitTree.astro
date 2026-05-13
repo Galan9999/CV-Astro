@@ -1,0 +1,136 @@
+---
+const REPO = 'Galan9999/CV-Astro'
+const API   = `https://api.github.com/repos/${REPO}/commits?per_page=20`
+
+type GHCommit = {
+  sha: string
+  commit: { message: string; author: { date: string } }
+}
+
+type ParsedCommit = {
+  hash:    string
+  type:    string
+  scope:   string
+  message: string
+  date:    string
+}
+
+function parseCommit(c: GHCommit): ParsedCommit {
+  const msg   = c.commit.message.split('\n')[0]
+  const match = msg.match(/^(\w+)(?:\(([^)]+)\))?!?:\s*(.+)$/)
+  return {
+    hash:    c.sha.slice(0, 7),
+    type:    match?.[1] ?? 'chore',
+    scope:   match?.[2] ?? '',
+    message: match?.[3] ?? msg,
+    date:    c.commit.author.date.slice(0, 10),
+  }
+}
+
+const badgeColor: Record<string, string> = {
+  feat:     '#22d3ee',
+  fix:      '#f59e0b',
+  perf:     '#34d399',
+  a11y:     '#a78bfa',
+  sec:      '#ef4444',
+  docs:     '#94a3b8',
+  chore:    '#64748b',
+  refactor: '#6366f1',
+}
+
+let commits: ParsedCommit[] = []
+let fetchError = false
+
+try {
+  const res = await fetch(API, {
+    headers: { 'Accept': 'application/vnd.github+json' }
+  })
+  if (res.ok) {
+    const data: GHCommit[] = await res.json()
+    commits = data.map(parseCommit)
+  } else {
+    fetchError = true
+  }
+} catch {
+  fetchError = true
+}
+---
+
+<section class="mb-16" aria-label="Build history">
+  <details class="git-tree rounded-lg border overflow-hidden" style="border-color: var(--border);">
+    <summary
+      class="flex items-center gap-3 px-5 py-4 cursor-pointer select-none font-mono text-sm"
+      style="background: var(--bg-surface); color: var(--text-primary);"
+    >
+      <span class="arrow" aria-hidden="true" style="color: var(--accent-from);">▶</span>
+      <span class="font-semibold">Historial de construcción</span>
+      {!fetchError && (
+        <span class="ml-auto text-xs" style="color: var(--text-secondary);">
+          ({commits.length} commits)
+        </span>
+      )}
+    </summary>
+
+    <div class="px-5 py-4" style="background: var(--bg-base);">
+      {fetchError ? (
+        <p class="text-sm" style="color: var(--text-secondary);">
+          No se pudo cargar el historial. Verifica la conexión o visita{' '}
+          <a
+            href={`https://github.com/${REPO}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style="color: var(--accent-from);"
+          >
+            github.com/{REPO}
+          </a>
+        </p>
+      ) : (
+        <ul class="space-y-2" role="list">
+          {commits.map((c) => (
+            <li class="flex items-center gap-3 font-mono text-xs min-w-0">
+              <code
+                class="shrink-0 w-16 text-right"
+                style="color: var(--text-secondary);"
+              >
+                {c.hash}
+              </code>
+              <span
+                class="shrink-0 px-1.5 py-0.5 rounded text-xs"
+                style={`background: color-mix(in srgb, ${badgeColor[c.type] ?? '#64748b'} 15%, transparent); color: ${badgeColor[c.type] ?? '#64748b'};`}
+              >
+                {c.type}{c.scope ? `(${c.scope})` : ''}
+              </span>
+              <span
+                class="flex-1 truncate"
+                style="color: var(--text-primary);"
+                title={c.message}
+              >
+                {c.message}
+              </span>
+              <time
+                class="shrink-0"
+                style="color: var(--text-secondary);"
+                datetime={c.date}
+              >
+                {c.date}
+              </time>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </details>
+</section>
+
+<style>
+  .git-tree summary::-webkit-details-marker { display: none; }
+  .git-tree summary { list-style: none; }
+
+  .git-tree .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  .git-tree[open] .arrow {
+    transform: rotate(90deg);
+  }
+</style>
