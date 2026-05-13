@@ -1,0 +1,113 @@
+---
+const steps = [
+  {
+    tool:    'Gemini 1.5 Pro',
+    role:    'Conceptualización estratégica',
+    detail:  'Arquitectura del sistema, narrativa de seniority, definición del token system, estructura de datos.',
+    accent:  'var(--accent-from)',
+  },
+  {
+    tool:    'Claude 3.5 Sonnet',
+    role:    'Auditoría técnica',
+    detail:  'Code review, WCAG compliance, coherencia de tokens entre temas, QA de decisiones arquitectónicas.',
+    accent:  '#a78bfa',
+  },
+  {
+    tool:    'Claude CLI',
+    role:    'Ejecución',
+    detail:  'Scaffolding de componentes Astro, implementación de hidratación selectiva, Content Collections.',
+    accent:  'var(--accent-to)',
+  },
+]
+---
+
+<section aria-labelledby="ai-design-heading" style="color: var(--text-primary);">
+  <header style="margin-bottom: 2rem;">
+    <h2
+      id="ai-design-heading"
+      style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem;"
+    >
+      Arquitectura de este CV
+    </h2>
+    <p style="color: var(--text-secondary); line-height: 1.7; max-width: 60ch;">
+      Este sitio es en sí mismo la demostración de las skills que lista.
+      Cada decisión técnica — el sistema de tokens, la hidratación selectiva,
+      el historial de commits — es evidencia deliberada de seniority.
+    </p>
+  </header>
+
+  <!-- AI orchestration pipeline -->
+  <div style="margin-bottom: 2.5rem;">
+    <h3 style="font-size: 1rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">
+      Flujo de orquestación IA
+    </h3>
+
+    <ol style="list-style: none; padding: 0; margin: 0;">
+      {steps.map((s, i) => (
+        <li style="display: flex; gap: 1rem; align-items: flex-start;">
+          <!-- step indicator + connector -->
+          <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+            <div style={`width: 32px; height: 32px; border-radius: 50%; background: ${s.accent}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #000; font-family: var(--font-mono);`}>
+              {i + 1}
+            </div>
+            {i < steps.length - 1 && (
+              <div style="width: 2px; height: 40px; background: var(--border); margin-top: 4px;" aria-hidden="true" />
+            )}
+          </div>
+
+          <!-- content -->
+          <div style={`padding-bottom: ${i < steps.length - 1 ? '1.5rem' : '0'};`}>
+            <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span style={`font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: ${s.accent};`}>
+                {s.tool}
+              </span>
+              <span style="font-size: 13px; color: var(--text-secondary);">
+                — {s.role}
+              </span>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+              {s.detail}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <!-- design systems philosophy -->
+  <div
+    style="border: var(--border-width) solid var(--border); border-radius: var(--radius); padding: 1.5rem; background: var(--bg-surface); margin-bottom: 1.5rem;"
+  >
+    <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">
+      El fin del hand-off estático
+    </h3>
+    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem;">
+      El flujo tradicional Figma → Zeplin → desarrollador introduce
+      una brecha semántica: el diseño vive en un sistema, el código en otro.
+      Con herramientas como Claude Design, el token system de{' '}
+      <code style="font-family: var(--font-mono); color: var(--text-mono); font-size: 13px;">tokens.css</code>{' '}
+      actúa como contrato compartido. El diseño ya no se "entrega" — se
+      genera directamente desde el contexto del sistema de componentes.
+    </p>
+    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin: 0;">
+      En proyectos de equipo, añadiría{' '}
+      <strong style="color: var(--text-primary);">Storybook</strong>{' '}
+      como capa de documentación y validación: cada componente tendría
+      su story con todas sus variants, sus tokens documentados, y sus
+      estados de accesibilidad verificados. El resultado sería un
+      sistema donde diseño, código y documentación son la misma fuente
+      de verdad — no tres artefactos sincronizados manualmente.
+    </p>
+  </div>
+
+  <!-- principle summary -->
+  <p style="font-size: 13px; color: var(--text-secondary); font-family: var(--font-mono);">
+    Este CV implementa ese principio a escala mínima:{' '}
+    <code style="color: var(--text-mono);">tokens.css</code>{' '}
+    →{' '}
+    <code style="color: var(--text-mono);">ThemeOrchestrator</code>{' '}
+    →{' '}
+    <code style="color: var(--text-mono);">componentes</code>.
+    Tres temas, cero lógica condicional en los componentes.
+  </p>
+</section>
