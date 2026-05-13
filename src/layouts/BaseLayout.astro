@@ -2,6 +2,8 @@
 import '@fontsource/geist-sans';
 import '@fontsource/geist-mono';
 import '../styles/global.css';
+import '../styles/tokens.css';
+import ThemeOrchestrator from '../components/ThemeOrchestrator.astro';
 
 interface Props {
   title?: string;
@@ -24,8 +26,21 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="bg-slate-950 text-slate-100 min-h-screen antialiased">
-    <slot />
+  <body
+    class="min-h-screen antialiased"
+    style="background-color: var(--bg-base); color: var(--text-primary);"
+  >
+    <a href="#main-content" class="skip-link sr-only">
+      Saltar al contenido
+    </a>
+
+    <header style="position: sticky; top: 0; z-index: 100; padding: 12px 24px; display: flex; justify-content: flex-end; border-bottom: var(--border-width) solid var(--border); background: var(--bg-base);">
+      <ThemeOrchestrator />
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
   </body>
 </html>
 
@@ -34,16 +49,31 @@ const {
   body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     background-repeat: repeat;
-    font-family: 'Geist Sans', system-ui, sans-serif;
+    font-family: var(--font-display, 'Geist Sans', system-ui, sans-serif);
   }
 
   code, pre, kbd, samp {
-    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-family: var(--font-mono, 'Geist Mono', ui-monospace, monospace);
   }
 
-  /* Tailwind's .font-mono doesn't automatically use Geist Mono unless we map it in config;
-     this rule acts as a global fallback for elements that use the class directly */
   .font-mono {
-    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-family: var(--font-mono, 'Geist Mono', ui-monospace, monospace);
+  }
+
+  .skip-link:focus-visible {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 9999;
+    padding: 8px 16px;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    clip: auto;
+    width: auto;
+    height: auto;
+    white-space: nowrap;
   }
 </style>
