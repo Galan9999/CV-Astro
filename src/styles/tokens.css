@@ -6,16 +6,16 @@
   --bg-elevated:    rgba(30, 41, 59, 0.8);
 
   --border:         rgba(51, 65, 85, 0.6);
-  --border-hover:   rgba(99, 102, 241, 0.5);
+  --border-hover:   #bd2d87;
   --border-width:   1px;
 
   --text-primary:   #f8fafc;
   --text-secondary: #94a3b8;
-  --text-mono:      #fb7185;
+  --text-mono:      #b191ff;
 
-  --accent-from:    #e11d48;
-  --accent-to:      #fb7185;
-  --glow-accent:    rgba(225, 29, 72, 0.45);
+  --accent-from:    #d664be;
+  --accent-to:      #df99f0;
+  --glow-accent:    rgba(163, 0, 21, 0.45);
 
   --shadow:         none;
   --shadow-hover:   none;
