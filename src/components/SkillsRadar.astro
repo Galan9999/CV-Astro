@@ -1,0 +1,63 @@
+---
+import cvData from '../data/cv.json'
+
+type Skill = { skill: string; mastery: number; category: string }
+
+const skills = cvData.skills_radar as Skill[]
+
+const categoryColor: Record<string, string> = {
+  frontend: 'var(--accent-from)',
+  craft:    'var(--accent-to)',
+  systems:  '#a78bfa',
+}
+
+const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)
+---
+
+<section class="mb-16" aria-label="Skills and mastery">
+  <h2
+    class="text-xl font-semibold mb-6 flex items-center gap-2"
+    style="color: var(--text-primary);"
+  >
+    <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+    Stack & maestría
+  </h2>
+
+  <div class="space-y-3">
+    {sorted.map(s => (
+      <div>
+        <div class="flex justify-between text-sm mb-1.5">
+          <span style="color: var(--text-primary);">{s.skill}</span>
+          <span class="font-mono text-xs" style="color: var(--text-secondary);">{s.mastery}%</span>
+        </div>
+        <div
+          class="h-1.5 rounded-full overflow-hidden"
+          style="background: var(--bg-elevated);"
+        >
+          <div
+            role="progressbar"
+            aria-valuenow={s.mastery}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`${s.skill}: ${s.mastery}%`}
+            class="h-full rounded-full transition-all duration-700"
+            style={`width: ${s.mastery}%; background: ${categoryColor[s.category] ?? 'var(--accent-from)'};`}
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="flex flex-wrap gap-4 mt-5" aria-label="Category legend">
+    {Object.entries(categoryColor).map(([cat, color]) => (
+      <span class="flex items-center gap-1.5 text-xs" style="color: var(--text-secondary);">
+        <span
+          class="w-2 h-2 rounded-full"
+          style={`background: ${color};`}
+          aria-hidden="true"
+        />
+        {cat}
+      </span>
+    ))}
+  </div>
+</section>
