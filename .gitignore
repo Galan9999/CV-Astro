@@ -8,8 +8,8 @@ dist/
 # Astro generated
 .astro/
 
-# Claude Code
-.claude/
+# Claude Code (local settings only — skills are tracked)
+.claude/*.json
 
 # Environment
 .env
