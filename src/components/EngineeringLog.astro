@@ -1,0 +1,80 @@
+---
+const decisions = [
+  {
+    title:   'Astro SSG sobre Next.js',
+    why:     'TBT = 0ms en secciones estáticas. El HTML llega pre-renderizado; el navegador pinta sin esperar JS. Para un CV, cada millisegundo de TBT es indefendible.',
+    whyNot:  'Next.js tiene runtime overhead incluso en páginas estáticas. App Router añade complejidad que este proyecto no necesita.',
+    tag:     'performance',
+  },
+  {
+    title:   'CSS Custom Properties sobre CSS-in-JS',
+    why:     'El sistema de tokens vive en tokens.css: un fichero, tres temas, cero runtime. Los componentes consumen variables — no generan CSS en el cliente.',
+    whyNot:  'Styled Components y Emotion tienen coste de hidratación y riesgo de mismatch. Son la solución correcta cuando el CSS es genuinamente dinámico.',
+    tag:     'architecture',
+  },
+  {
+    title:   'TypeScript strict mode desde el inicio',
+    why:     'Los errores de tipo en cv.json — un campo mastery como string en lugar de number — se detectan en build time. El CV no llega roto a producción.',
+    whyNot:  'JSDoc es un workaround válido para migración. Strict mode es la garantía de contrato. Son la misma intención con diferente enforcement.',
+    tag:     'tooling',
+  },
+  {
+    title:   'Vanilla JS en ThemeOrchestrator',
+    why:     'Un selector de tema que cambia un atributo en el <html> no necesita un framework. 0 bytes de JS de React para esta funcionalidad.',
+    whyNot:  'React aquí sería over-engineering medible: +45KB de runtime para gestionar tres botones y un localStorage.setItem.',
+    tag:     'performance',
+  },
+]
+
+const tagColor: Record<string, string> = {
+  performance:  'var(--accent-to)',
+  architecture: 'var(--accent-from)',
+  tooling:      '#a78bfa',
+}
+---
+
+<section class="mb-16" aria-label="Engineering decisions log">
+  <div class="mb-6">
+    <h2
+      class="text-xl font-semibold mb-2 flex items-center gap-2"
+      style="color: var(--text-primary);"
+    >
+      <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+      Log de decisiones técnicas
+    </h2>
+    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+      Cada decisión arquitectónica tiene un motivo técnico concreto
+      y una alternativa descartada con su razonamiento.
+    </p>
+  </div>
+
+  <div class="space-y-4">
+    {decisions.map(d => (
+      <article
+        class="rounded-lg p-5 border"
+        style="background: var(--bg-surface); border-color: var(--border);"
+        data-tech-tag={d.tag}
+      >
+        <span
+          class="inline-block text-xs font-mono px-2 py-0.5 rounded mb-3"
+          style={`background: color-mix(in srgb, ${tagColor[d.tag]} 15%, transparent); color: ${tagColor[d.tag]};`}
+        >
+          {d.tag}
+        </span>
+
+        <h3 class="text-base font-semibold mb-2" style="color: var(--text-primary);">
+          {d.title}
+        </h3>
+
+        <p class="text-sm leading-relaxed mb-3" style="color: var(--text-secondary);">
+          {d.why}
+        </p>
+
+        <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+          <strong style="color: var(--text-primary);">por qué no la alternativa →</strong>{' '}
+          {d.whyNot}
+        </p>
+      </article>
+    ))}
+  </div>
+</section>
