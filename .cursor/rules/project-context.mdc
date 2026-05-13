@@ -15,6 +15,8 @@ Astro 4 + TypeScript + Tailwind CV site. Source of truth: `src/data/cv.json` (JS
 - **Performance budget** — LCP ≤ 2.5 s, TBT = 0, CLS = 0.
 - **WCAG 2.1 AA** — all images need `alt`; icons need `aria-label`.
 - **Conventional Commits** — `feat:`, `fix:`, `chore:`, `docs:`, `perf:`.
+- **Token purity** — every color, shadow, border-radius, and font-family in a component must reference a CSS custom property from `src/styles/tokens.css`. No hardcoded hex values, rgba literals, or Tailwind color classes (`text-rose-600`, `bg-slate-900`, etc.) in `.astro` files. To add a theme-specific value, scope a new token in `tokens.css` — never patch inside the component.
+- **No code comments** — naming is the documentation. No `<!-- -->`, `//`, or `/* */` inside `.astro` files. Exception: license headers and `@media`/`@keyframes` markers only. Rename instead of commenting.
 
 ## Key paths
 

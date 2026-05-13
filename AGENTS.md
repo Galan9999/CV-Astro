@@ -28,6 +28,8 @@ public/                 ← static assets (fonts, images, og)
 4. **Performance budget**: LCP ≤ 2.5 s, TBT = 0, CLS = 0. Reject PRs that regress these.
 5. **Accessibility**: WCAG 2.1 AA minimum. All images need `alt`; icons need `aria-label`.
 6. **Commits** follow Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `perf:`).
+7. **Token purity**: Every color, shadow, border-radius, and font-family in a component must reference a CSS custom property from `src/styles/tokens.css`. No hardcoded hex values, rgba literals, or font-family strings in `.astro` files. If a theme-specific value is needed, add a token to `tokens.css` scoped to `[data-theme]` — never patch the value inside the component.
+8. **No code comments**: Naming is the documentation. Do not add HTML comments (`<!-- -->`), JS/TS inline comments (`//`), or CSS block comments (`/* */`) inside `.astro` files. The only acceptable exceptions are: (a) license headers, (b) `@media` / `@keyframes` at-rule markers. If a name needs a comment to be understood, rename it instead.
 
 ## Shared Glossary
 
