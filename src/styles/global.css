@@ -1,0 +1,67 @@
+/* ── Focus ring ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgb(99 102 241);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Print ─────────────────────────────────────────────── */
+@media print {
+  @page {
+    margin: 1.5cm 2cm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    text-shadow: none !important;
+    border-color: #ccc !important;
+  }
+
+  nav,
+  button,
+  [data-no-print] {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.4;
+    font-family: system-ui, sans-serif;
+  }
+
+  details {
+    display: block !important;
+  }
+
+  details[open] summary ~ * {
+    display: block !important;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555 !important;
+  }
+
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+  }
+
+  section {
+    break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    break-after: avoid;
+  }
+
+  article {
+    break-inside: avoid;
+    margin-bottom: 1em;
+  }
+}

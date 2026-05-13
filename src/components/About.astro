@@ -1,0 +1,79 @@
+---
+interface WorkflowStep {
+  step: number;
+  title: string;
+  model: string;
+  description: string;
+  borderClass: string;
+  bgClass: string;
+  accentClass: string;
+  modelClass: string;
+}
+
+const steps: WorkflowStep[] = [
+  {
+    step: 1,
+    title: 'Conceptualización estratégica',
+    model: 'Gemini 1.5 Pro',
+    description: 'Strategic planning & content architecture',
+    borderClass: 'border-indigo-500',
+    bgClass: 'bg-indigo-950/20',
+    accentClass: 'text-indigo-400',
+    modelClass: 'text-indigo-300',
+  },
+  {
+    step: 2,
+    title: 'Auditoría de código',
+    model: 'Claude 3.5 Sonnet',
+    description: 'Code review & quality enforcement',
+    borderClass: 'border-violet-500',
+    bgClass: 'bg-violet-950/20',
+    accentClass: 'text-violet-400',
+    modelClass: 'text-violet-300',
+  },
+  {
+    step: 3,
+    title: 'Generación de componentes',
+    model: 'Claude CLI',
+    description: 'Astro components with selective hydration',
+    borderClass: 'border-cyan-500',
+    bgClass: 'bg-cyan-950/20',
+    accentClass: 'text-cyan-400',
+    modelClass: 'text-cyan-300',
+  },
+];
+---
+
+<section>
+  <h2 class="text-xl font-semibold text-white mb-2 flex items-center gap-2">
+    <span class="font-mono text-indigo-400 text-sm">~/</span>
+    About
+  </h2>
+  <p class="text-slate-400 text-sm leading-relaxed mb-8">
+    This CV was assembled with an AI-assisted workflow that distributes planning, auditing, and generation across specialized models.
+  </p>
+
+  <h3 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-5">AI Workflow</h3>
+
+  <div class="flex flex-col md:flex-row items-stretch gap-2">
+    {steps.map((step, index) => (
+      <Fragment>
+        <div class={`flex-1 font-mono border-l-2 rounded-lg p-4 ${step.borderClass} ${step.bgClass}`}>
+          <div class={`text-xs mb-1.5 ${step.accentClass}`}>
+            step {step.step < 10 ? `0${step.step}` : step.step}
+          </div>
+          <div class="text-white text-sm font-semibold mb-1 leading-snug">{step.title}</div>
+          <div class={`text-xs mb-2 ${step.modelClass}`}>{step.model}</div>
+          <div class="text-slate-400 text-xs leading-relaxed font-sans">{step.description}</div>
+        </div>
+        {index < steps.length - 1 && (
+          <div class="flex items-center justify-center md:px-1 py-1 md:py-0" aria-hidden="true">
+            <span class="text-slate-600 font-mono text-lg select-none md:[writing-mode:horizontal-tb] [writing-mode:vertical-lr] md:rotate-0 rotate-90">
+              →
+            </span>
+          </div>
+        )}
+      </Fragment>
+    ))}
+  </div>
+</section>

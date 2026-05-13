@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "name": "Your Name",
+    "role": "Senior Front-End Engineer",
+    "location": "Remote",
+    "email": "you@example.com",
+    "github": "github.com/yourhandle",
+    "linkedin": "linkedin.com/in/yourhandle"
+  },
+  "stack": [
+    "React 18", "TypeScript 5", "Redux Toolkit",
+    "CASL (RBAC)", "Vitest / Cypress", "SCSS Design Tokens"
+  ],
+  "experience": [
+    {
+      "company": "Legal Pigeon",
+      "role": "Senior Front-End Engineer",
+      "period": { "start": "2022-01", "end": "present" },
+      "achievements": [
+        "RBAC a escala: implementación de 180+ permission checks con CASL, eliminando lógica de autorización ad-hoc en toda la app",
+        "Hibridación de estado: migración progresiva Redux → Zustand en slices de alta frecuencia, reduciendo re-renders en un 40%",
+        "Estrategia de Lazy Loading: code-splitting en 70+ rutas con React.lazy + Suspense, mejorando LCP en un 35%"
+      ],
+      "tech": ["React 18", "TypeScript 5", "Redux Toolkit", "Zustand", "CASL", "Vite"]
+    }
+  ]
+}
