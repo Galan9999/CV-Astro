@@ -15,7 +15,8 @@
 |-------|---------|---------|
 | performance | `/skill performance` | Audit Lighthouse / Core Web Vitals |
 | a11y | `/skill a11y` | Audit WCAG 2.1 AA compliance |
-| tokens | `/skill tokens` | Optimise token usage in this session |
+| context-efficiency | `/skill context-efficiency` | Reduce token consumption in this session |
+| design-tokens | `/skill design-tokens` | Audit CSS custom property usage in components |
 
 ## Workflow Preferences
 
@@ -28,7 +29,7 @@
 
 - `cv.json` changes require user confirmation before proceeding.
 - When adding a new Astro component, check if a simpler HTML element suffices.
-- Use `rtk` prefix for shell commands to reduce token consumption (see global CLAUDE.md).
+- Prefer targeted file reads — use offset + limit params when reading large files. Read only what the task requires.
 
 ## Paths Claude Should Know
 
