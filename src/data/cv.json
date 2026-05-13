@@ -1,11 +1,11 @@
 {
   "meta": {
-    "name": "Your Name",
-    "role": "Senior Front-End Engineer",
+    "name": "Carles Galán Bertran",
+    "role": "Full Stack Developer",
     "location": "Remote",
-    "email": "you@example.com",
-    "github": "github.com/yourhandle",
-    "linkedin": "linkedin.com/in/yourhandle"
+    "email": "galan.carles@gmail.com",
+    "github": "https://github.com/Galan9999/CV-Astro",
+    "linkedin": "linkedin.com/in/carles-galán-bertran"
   },
   "stack": [
     "React 18", "TypeScript 5", "Redux Toolkit",
@@ -23,5 +23,31 @@
       ],
       "tech": ["React 18", "TypeScript 5", "Redux Toolkit", "Zustand", "CASL", "Vite"]
     }
+  ],
+  "build_manifest": {
+    "framework":   "Astro 4.x",
+    "language":    "TypeScript 5 (strict)",
+    "styling":     "Tailwind CSS 3.4 + CSS Custom Properties",
+    "data":        "JSON Resume spec + Content Collections",
+    "themes":      ["sleek", "neo-brutalism", "high-contrast"],
+    "a11y_target": "WCAG 2.1 AA · Lighthouse ≥ 95",
+    "deploy":      "Static SSG — zero JS by default",
+    "repo":        "https://github.com/Galan9999/CV-Astro",
+    "ai_workflow": [
+      "Gemini 1.5 Pro — strategy + content architecture",
+      "Claude 3.5 Sonnet — code audit + a11y review",
+      "Claude CLI — scaffolding + component generation"
+    ]
+  },
+  "skills_radar": [
+    { "skill": "React / Component Architecture", "mastery": 95, "category": "frontend"  },
+    { "skill": "TypeScript — advanced types",    "mastery": 90, "category": "frontend"  },
+    { "skill": "State management Redux/Zustand", "mastery": 88, "category": "frontend"  },
+    { "skill": "Performance (Core Web Vitals)",  "mastery": 85, "category": "craft"     },
+    { "skill": "A11y / WCAG 2.1",               "mastery": 82, "category": "craft"     },
+    { "skill": "RBAC / CASL",                   "mastery": 80, "category": "systems"   },
+    { "skill": "Astro / SSG architecture",       "mastery": 78, "category": "frontend"  },
+    { "skill": "Testing Vitest / Cypress",       "mastery": 75, "category": "craft"     },
+    { "skill": "Design Systems / Tokens",        "mastery": 80, "category": "craft"     }
   ]
 }
