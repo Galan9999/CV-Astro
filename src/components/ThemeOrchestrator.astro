@@ -61,7 +61,6 @@ const themes = [
       })
     })
 
-  // usage: window.setTheme('neo-brutalism')
   ;(window as any).setTheme = (t: string) => {
     if (themes.includes(t as Theme)) applyTheme(t as Theme)
     else console.warn(`[ThemeOrchestrator] unknown theme: "${t}". Options: ${themes.join(', ')}`)

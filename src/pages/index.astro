@@ -17,7 +17,6 @@ const currentYear = new Date().getFullYear();
 
   <div class="max-w-3xl mx-auto px-6 py-14">
 
-    <!-- ── Hero ───────────────────────────────────────────── -->
     <section class="mb-16" aria-label="Introduction">
       <h1 class="text-4xl font-bold mb-2 tracking-tight" style="color: var(--text-primary);">{meta.name}</h1>
       <p class="text-lg font-semibold mb-4" style="color: var(--accent-from);">{meta.role}</p>
@@ -77,10 +76,8 @@ const currentYear = new Date().getFullYear();
       </nav>
     </section>
 
-    <!-- ── Skills Radar ──────────────────────────────────── -->
     <SkillsRadar />
 
-    <!-- ── Stack ──────────────────────────────────────────── -->
     <section class="mb-16" aria-label="Technology stack">
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
@@ -99,7 +96,6 @@ const currentYear = new Date().getFullYear();
       </div>
     </section>
 
-    <!-- ── Experience ─────────────────────────────────────── -->
     <section class="mb-16" aria-label="Work experience">
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
@@ -118,21 +114,16 @@ const currentYear = new Date().getFullYear();
       </div>
     </section>
 
-    <!-- ── AI Design Process ─────────────────────────────── -->
     <AIDesignProcess />
 
-    <!-- ── Engineering Log ──────────────────────────────── -->
     <EngineeringLog />
 
-    <!-- ── Git Tree ──────────────────────────────────────── -->
     <GitTree />
 
-    <!-- ── About ──────────────────────────────────────────── -->
     <div class="mb-16">
       <About />
     </div>
 
-    <!-- ── Footer ─────────────────────────────────────────── -->
     <footer class="border-t pt-8" style="border-color: var(--border);" role="contentinfo">
       <p class="font-mono text-xs text-center" style="color: var(--text-secondary);">
         © {currentYear} {meta.name} · Built with Astro 4 + Tailwind CSS
@@ -141,7 +132,6 @@ const currentYear = new Date().getFullYear();
 
   </div>
 
-  <!-- PrintButton is outside the container — fixed position -->
   <PrintButton />
 
 </BaseLayout>

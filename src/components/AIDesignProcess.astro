@@ -36,7 +36,6 @@ const steps = [
     </p>
   </header>
 
-  <!-- AI orchestration pipeline -->
   <div style="margin-bottom: 2.5rem;">
     <h3 style="font-size: 1rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">
       Flujo de orquestación IA
@@ -45,7 +44,6 @@ const steps = [
     <ol style="list-style: none; padding: 0; margin: 0;">
       {steps.map((s, i) => (
         <li style="display: flex; gap: 1rem; align-items: flex-start;">
-          <!-- step indicator + connector -->
           <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
             <div style={`width: 32px; height: 32px; border-radius: 50%; background: ${s.accent}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--on-accent); font-family: var(--font-mono);`}>
               {i + 1}
@@ -55,7 +53,6 @@ const steps = [
             )}
           </div>
 
-          <!-- content -->
           <div style={`padding-bottom: ${i < steps.length - 1 ? '1.5rem' : '0'};`}>
             <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.25rem;">
               <span style={`font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: ${s.accent};`}>
@@ -74,7 +71,6 @@ const steps = [
     </ol>
   </div>
 
-  <!-- design systems philosophy -->
   <div
     style="border: var(--border-width) solid var(--border); border-radius: var(--radius); padding: 1.5rem; background: var(--bg-surface); margin-bottom: 1.5rem;"
   >
@@ -100,7 +96,6 @@ const steps = [
     </p>
   </div>
 
-  <!-- principle summary -->
   <p style="font-size: 13px; color: var(--text-secondary); font-family: var(--font-mono);">
     Este CV implementa ese principio a escala mínima:{' '}
     <code style="color: var(--text-mono);">tokens.css</code>{' '}
