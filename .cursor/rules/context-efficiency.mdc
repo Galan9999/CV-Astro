@@ -1,0 +1,24 @@
+---
+description: AI context efficiency for Cursor sessions — response style, file reading, targeted edits
+globs: ["**/*"]
+alwaysApply: false
+---
+
+# Token Optimisation (Cursor Sessions)
+
+## Response Style
+
+- No preamble ("Sure!", "Of course!", "Great question!").
+- No trailing summary of what was just done — the diff is self-evident.
+- Inline code for single identifiers; code blocks only when the user needs to copy.
+
+## File Reading
+
+- Read only the lines relevant to the task; request targeted ranges.
+- Use symbol search before reading a whole file.
+- After a large result, extract only the relevant portion before continuing.
+
+## Edits
+
+- Prefer targeted edits (Edit tool / inline diff) over full file rewrites.
+- One concern per response; don't bundle unrelated changes.

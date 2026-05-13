@@ -1,0 +1,52 @@
+---
+description: Design token coherence — apply before any styling work or new component
+globs: ["src/components/**/*.astro", "src/styles/**/*.css", "src/layouts/**/*.astro"]
+alwaysApply: false
+---
+
+# Design Token Coherence
+
+## The contract
+Every visual property uses a CSS custom property from `src/styles/tokens.css`.
+No hardcoded hex values, px shadows, or border-radius in component files.
+
+```
+✓  border: var(--border-width) solid var(--border)
+✓  box-shadow: var(--shadow)
+✓  border-radius: var(--radius)
+✗  border: 1px solid rgba(51,65,85,0.6)
+✗  box-shadow: 4px 4px 0px #000
+✗  border-radius: 12px
+```
+
+## Available tokens
+```
+--bg-base / --bg-surface / --bg-elevated
+--border / --border-hover / --border-width
+--text-primary / --text-secondary / --text-mono
+--accent-from / --accent-to
+--shadow / --shadow-hover
+--radius
+--focus-ring / --focus-offset
+--font-display / --font-mono
+```
+
+## Tailwind with tokens
+```
+border-[var(--border-width)]    shadow-[var(--shadow)]
+rounded-[var(--radius)]         text-[var(--text-primary)]
+```
+Custom Tailwind variants for rare theme-specific overrides only:
+```
+neo:shadow-[4px_4px_0px_#000]   hc:border-[3px]
+```
+
+## Audit — any output is a violation, fix before committing
+```bash
+grep -r "#[0-9a-fA-F]\{3,6\}" src/components/ --include="*.astro"
+grep -r "box-shadow:" src/components/ --include="*.astro" | grep -v "var(--"
+grep -r "border-radius:" src/components/ --include="*.astro" | grep -v "var(--"
+```
+
+## Rule: if a theme override is needed
+Add a new token to `tokens.css` — never patch inside a component.
