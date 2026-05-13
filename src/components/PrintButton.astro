@@ -1,0 +1,63 @@
+---
+---
+
+<button
+  onclick="window.print()"
+  data-no-print
+  aria-label="Download CV as PDF"
+  class="print-btn"
+  type="button"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <polyline points="6 9 6 2 18 2 18 9"/>
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+    <rect x="6" y="14" width="12" height="8"/>
+  </svg>
+  Download PDF
+</button>
+
+<style>
+  .print-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.125rem;
+    border-radius: var(--radius, 0.5rem);
+    border: var(--border-width, 1px) solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: opacity 0.2s, box-shadow 0.2s, transform 0.1s;
+  }
+
+  .print-btn:hover {
+    opacity: 0.85;
+    box-shadow: var(--shadow-hover, var(--shadow));
+  }
+
+  .print-btn:active {
+    transform: scale(0.97);
+  }
+
+  @media print {
+    .print-btn { display: none !important; }
+  }
+</style>
