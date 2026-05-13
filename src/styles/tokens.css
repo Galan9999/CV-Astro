@@ -40,10 +40,12 @@
 
   --text-primary:   #000000;
   --text-secondary: #333333;
-  --text-mono:      #1a1a1a;
+  --text-mono:      #000000;
 
-  --accent-from:    #e11d48;
-  --accent-to:      #e11d48;
+  --accent-from:    #000000;
+  --accent-to:      #000000;
+  --on-accent:      #ffffff;
+
   --glow-accent:    transparent;
 
   --shadow:         4px 4px 0px #000000;
