@@ -6,6 +6,7 @@ import AIDesignProcess  from '@components/AIDesignProcess.astro';
 import EngineeringLog   from '@components/EngineeringLog.astro';
 import GitTree          from '@components/GitTree.astro';
 import SkillsRadar      from '@components/SkillsRadar.astro';
+import AboutEvolution   from '@components/AboutEvolution.astro';
 import PrintButton      from '@components/PrintButton.astro';
 import ContactForm      from '@components/ContactForm.astro';
 import cvData from '@data/cv.json';
@@ -85,6 +86,8 @@ const currentYear = new Date().getFullYear();
         ))}
       </div>
     </section>
+
+    <AboutEvolution />
 
     <section class="mb-16" aria-label="Work experience">
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">

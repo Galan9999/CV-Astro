@@ -1,0 +1,126 @@
+---
+const phases = [
+  {
+    title: 'Foundations & Growth',
+    tagline: 'Personal Evolution',
+    description: 'Etapa de formación de criterio analítico y resiliencia. El origen de mi enfoque en la resolución de problemas complejos.',
+    color: 'var(--text-secondary)',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+  },
+  {
+    title: 'Full Stack Mastery',
+    tagline: 'Software Engineering',
+    description: 'Especialización en arquitecturas modernas (React, Node, TypeScript). Enfoque en performance, escalabilidad y la modernización de sistemas en Legal Pigeon.',
+    color: 'var(--accent-to)',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>`,
+  },
+  {
+    title: 'AI Orchestration',
+    tagline: 'Current Frontier',
+    description: 'Experto en integrar LLMs en el ciclo de desarrollo. Reducción de tiempos de entrega mediante flujos híbridos Gemini/Claude y automatización inteligente.',
+    color: 'var(--accent-from)',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M9 2v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/></svg>`,
+  },
+];
+---
+
+<section class="mb-16" aria-label="Career Evolution">
+  <h2 class="text-xl font-semibold mb-8 flex items-center gap-2" style="color: var(--text-primary);">
+    <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+    Evolución
+  </h2>
+
+  <div class="relative">
+    <div
+      class="absolute left-3 top-3 bottom-3 w-px"
+      style="background: linear-gradient(to bottom, var(--text-secondary), var(--accent-to), var(--accent-from));"
+      aria-hidden="true"
+    ></div>
+
+    {phases.map((phase, i) => (
+      <div class="phase-item flex items-start gap-5 mb-9 last:mb-0" data-index={i}>
+        <div
+          class="relative z-10 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center"
+          style={`background: var(--bg-base); border: var(--border-width) solid ${phase.color}; color: ${phase.color};`}
+          set:html={phase.icon}
+        />
+        <div class="pt-0.5">
+          <span
+            class="font-mono text-xs uppercase tracking-widest block mb-1"
+            style={`color: ${phase.color};`}
+          >
+            {phase.tagline}
+          </span>
+          <h3 class="text-sm font-semibold mb-1.5" style="color: var(--text-primary);">
+            {phase.title}
+          </h3>
+          <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+            {phase.description}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div
+    class="exec-summary mt-8 px-5 py-4 rounded-lg"
+    style="border-left: 2px solid var(--accent-from); background: color-mix(in srgb, var(--accent-from) 8%, transparent);"
+  >
+    <p class="text-sm leading-relaxed" style="color: var(--text-primary);">
+      <span class="font-mono text-xs mr-2" style="color: var(--accent-from);">→ Hoy</span>
+      Ayudando a empresas a transicionar de flujos legacy a arquitecturas AI-First.
+    </p>
+  </div>
+</section>
+
+<style>
+  .phase-item,
+  .exec-summary {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  .phase-item.is-visible,
+  .exec-summary.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+
+  .phase-item[data-index="1"].is-visible { transition-delay: 80ms; }
+  .phase-item[data-index="2"].is-visible { transition-delay: 160ms; }
+  .exec-summary.is-visible              { transition-delay: 240ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phase-item,
+    .exec-summary {
+      opacity: 1;
+      transform: none;
+      transition: none !important;
+    }
+  }
+
+  @media print {
+    .phase-item,
+    .exec-summary {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          obs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  document.querySelectorAll('.phase-item, .exec-summary').forEach((el) => obs.observe(el));
+</script>
