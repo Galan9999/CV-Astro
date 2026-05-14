@@ -1,0 +1,31 @@
+{
+  "experience": [
+    {
+      "id": "legal-pigeon",
+      "type": "featured",
+      "company": "Legal Pigeon",
+      "role": "Full Stack Engineer — Front-End Lead",
+      "period": "2023 – presente",
+      "description": "Responsable del ecosistema Front-End: migración a React 18, arquitectura de estados complejos con Redux Toolkit + Zustand, y sistema RBAC con 180+ checks vía CASL. Lazy loading sobre 70+ rutas.",
+      "stack": ["React 18", "TypeScript", "Redux Toolkit", "CASL", "Vitest"]
+    },
+    {
+      "id": "frontera",
+      "type": "compact",
+      "company": "Frontera",
+      "role": "Full Stack Developer",
+      "period": "2021 – 2023",
+      "description": "Desarrollo de internal tools y dashboards administrativos para gestión dinámica de activos digitales (banners, layouts). Foco en entender necesidades de negocio y traducirlas en interfaces operativas.",
+      "stack": ["Vue 3", "Node.js", "PostgreSQL"]
+    },
+    {
+      "id": "ecommerce",
+      "type": "compact",
+      "company": "E-commerce Solution",
+      "role": "Independent Developer",
+      "period": "2020 – 2021",
+      "description": "Desarrollo integral de tienda online con foco en performance y SEO técnico. De cero a producción.",
+      "stack": ["Next.js", "Stripe", "Vercel"]
+    }
+  ]
+}

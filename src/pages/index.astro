@@ -1,5 +1,6 @@
 ---
 import BaseLayout       from '@layouts/BaseLayout.astro';
+import Hero             from '@components/Hero.astro';
 import ExperienceCard   from '@components/ExperienceCard.astro';
 import About            from '@components/About.astro';
 import AIDesignProcess  from '@components/AIDesignProcess.astro';
@@ -9,63 +10,21 @@ import SkillsRadar      from '@components/SkillsRadar.astro';
 import AboutEvolution   from '@components/AboutEvolution.astro';
 import PrintButton      from '@components/PrintButton.astro';
 import ContactForm      from '@components/ContactForm.astro';
-import cvData from '@data/cv.json';
+import cvData           from '@data/cv.json';
+import experienceData   from '@data/experience.json';
 
-const { meta, stack, experience } = cvData;
-const currentYear = new Date().getFullYear();
+const { meta, stack } = cvData;
+const { experience }  = experienceData;
+const featured        = experience.filter(e => e.type === 'featured');
+const compact         = experience.filter(e => e.type === 'compact');
+const currentYear     = new Date().getFullYear();
 ---
 
 <BaseLayout title={`${meta.name} — ${meta.role}`} description={`CV of ${meta.name}, ${meta.role}`}>
 
   <div class="max-w-3xl mx-auto px-6 py-14">
 
-    <section class="mb-16" aria-label="Introduction">
-      <div class="flex items-center gap-6 mb-6">
-        <div class="avatar flex-shrink-0">
-          <img
-            src="/images/profile.jpg"
-            alt={`Portrait of ${meta.name}`}
-            width="96"
-            height="96"
-            class="rounded-full grayscale transition-all duration-300"
-            style="border: var(--border-width) solid var(--border); width: 96px; height: 96px; object-fit: cover;"
-          />
-        </div>
-        <div>
-          <h1 class="text-4xl font-bold mb-2 tracking-tight" style="color: var(--text-primary);">{meta.name}</h1>
-          <p class="text-lg font-semibold" style="color: var(--accent-from);">{meta.role}</p>
-        </div>
-      </div>
-      <p class="leading-relaxed mb-5 max-w-xl" style="color: var(--text-secondary);">
-        Building performant, accessible web applications with modern tooling and a focus on developer experience.
-      </p>
-
-      <div class="flex items-center gap-1.5 text-sm mb-8" style="color: var(--text-secondary);">
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-        <span>{meta.location}</span>
-      </div>
-
-      <nav class="flex flex-wrap gap-3" aria-label="Contact links">
-        {[
-          { href: meta.github,                label: 'GitHub'   },
-          { href: `https://${meta.linkedin}`, label: 'LinkedIn' },
-          { href: `mailto:${meta.email}`,     label: 'Email'    },
-        ].filter(l => l.href && !l.href.includes('undefined')).map(link => (
-          <a
-            href={link.href}
-            class="social-link inline-flex items-center px-4 py-2 text-sm transition-all duration-200"
-            target={link.href.startsWith('mailto:') ? undefined : '_blank'}
-            rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-            style="border: var(--border-width) solid var(--border); background: var(--bg-surface); color: var(--text-secondary); border-radius: var(--radius); text-decoration: none;"
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
-    </section>
+    <Hero meta={meta} />
 
     <SkillsRadar />
 
@@ -94,17 +53,36 @@ const currentYear = new Date().getFullYear();
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
         Experience
       </h2>
+
       <div class="space-y-4">
-        {experience.map(exp => (
+        {featured.map(exp => (
           <ExperienceCard
+            id={exp.id}
+            type={exp.type as 'featured' | 'compact'}
             company={exp.company}
             role={exp.role}
             period={exp.period}
-            achievements={exp.achievements.map(text => ({ text }))}
-            tech={exp.tech}
+            description={exp.description}
+            stack={exp.stack}
           />
         ))}
       </div>
+
+      {compact.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+          {compact.map(exp => (
+            <ExperienceCard
+              id={exp.id}
+              type={exp.type as 'featured' | 'compact'}
+              company={exp.company}
+              role={exp.role}
+              period={exp.period}
+              description={exp.description}
+              stack={exp.stack}
+            />
+          ))}
+        </div>
+      )}
     </section>
 
     <AIDesignProcess />
@@ -136,31 +114,3 @@ const currentYear = new Date().getFullYear();
   <PrintButton />
 
 </BaseLayout>
-
-<style>
-  .avatar img {
-    transition: filter 300ms ease, border-color 300ms ease;
-    filter: grayscale(100%);
-  }
-
-  .avatar img:hover,
-  .avatar img:focus-visible {
-    filter: grayscale(0%) drop-shadow(0 0 8px var(--glow-accent));
-    border-color: var(--accent-from);
-  }
-
-  .social-link:hover,
-  .social-link:focus-visible {
-    color: var(--accent-from);
-    border-color: var(--accent-from);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .avatar img { transition: none; }
-  }
-
-  @media print {
-    .avatar img { filter: none !important; }
-    .social-link::after { content: " (" attr(href) ")"; }
-  }
-</style>
