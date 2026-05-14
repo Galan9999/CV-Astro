@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://galan9999.github.io/CV-Astro',
+  site: 'https://tudominio.netlify.app',
   output: 'static',
   integrations: [tailwind()],
   vite: {
