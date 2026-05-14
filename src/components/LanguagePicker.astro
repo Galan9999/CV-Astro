@@ -1,0 +1,56 @@
+---
+import { languages, type Lang } from '../i18n/ui';
+
+interface Props {
+  currentLang: Lang;
+  currentPath: string;
+}
+
+const { currentLang, currentPath } = Astro.props;
+const langs = Object.keys(languages) as Lang[];
+---
+
+<nav aria-label="Selección de idioma">
+  <ul role="list">
+    {langs.map(lang => (
+      <li>
+        <a
+          href={`/${lang}${currentPath}`}
+          aria-current={lang === currentLang ? 'true' : undefined}
+          class={lang === currentLang ? 'active' : ''}
+        >
+          {lang.toUpperCase()}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  a:hover {
+    color: var(--text-primary);
+  }
+
+  a.active {
+    color: var(--accent-from);
+    border-bottom-color: var(--accent-from);
+  }
+</style>

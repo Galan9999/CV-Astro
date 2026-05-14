@@ -4,7 +4,8 @@ import '@fontsource/geist-mono';
 import '../styles/global.css';
 import '../styles/tokens.css';
 import ThemeOrchestrator from '../components/ThemeOrchestrator.astro';
-import { defaultLang, type Lang } from '../i18n/ui';
+import LanguagePicker    from '../components/LanguagePicker.astro';
+import { ui, defaultLang, type Lang } from '../i18n/ui';
 
 interface Props {
   title?: string;
@@ -17,6 +18,12 @@ const {
   description = 'Personal curriculum vitae',
   lang = defaultLang,
 } = Astro.props;
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const hasLangPrefix = segments.length > 0 && segments[0] in ui;
+const currentPath = hasLangPrefix
+  ? '/' + segments.slice(1).join('/') + (Astro.url.pathname.endsWith('/') ? '/' : '')
+  : Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -37,7 +44,8 @@ const {
       Saltar al contenido
     </a>
 
-    <header style="position: sticky; top: 0; z-index: 100; padding: 12px 24px; display: flex; justify-content: flex-end; border-bottom: var(--border-width) solid var(--border); background: var(--bg-base);">
+    <header style="position: sticky; top: 0; z-index: 100; padding: 12px 24px; display: flex; align-items: center; justify-content: flex-end; gap: 20px; border-bottom: var(--border-width) solid var(--border); background: var(--bg-base);">
+      <LanguagePicker currentLang={lang} currentPath={currentPath} />
       <ThemeOrchestrator />
     </header>
 

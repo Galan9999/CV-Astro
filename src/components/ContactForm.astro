@@ -1,10 +1,19 @@
 ---
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <form
   name="contact"
   method="POST"
-  action="/thanks"
+  action={`/${lang}/thanks/`}
   data-netlify="true"
   class="flex flex-col gap-4"
 >
@@ -47,7 +56,7 @@
   </div>
 
   <button type="submit" class="submit-btn self-start px-6 py-3 text-sm font-semibold">
-    Enviar mensaje
+    {t('contact.cta')}
   </button>
 </form>
 
