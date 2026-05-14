@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://tudominio.netlify.app',
+  site: 'https://cv-carles-galan.netlify.app',
   output: 'static',
   integrations: [tailwind()],
   vite: {
