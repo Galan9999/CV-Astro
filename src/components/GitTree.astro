@@ -1,4 +1,11 @@
 ---
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props
+const t = useTranslations(lang)
+
 const REPO = 'Galan9999/CV-Astro'
 const API   = `https://api.github.com/repos/${REPO}/commits?per_page=20`
 
@@ -63,7 +70,7 @@ try {
       style="background: var(--bg-surface); color: var(--text-primary);"
     >
       <span class="arrow" aria-hidden="true" style="color: var(--accent-from);">▶</span>
-      <span class="font-semibold">Historial de construcción</span>
+      <span class="font-semibold">{t('git.heading')}</span>
       {!fetchError && (
         <span class="ml-auto text-xs" style="color: var(--text-secondary);">
           ({commits.length} commits)
@@ -74,7 +81,7 @@ try {
     <div class="px-5 py-4" style="background: var(--bg-base);">
       {fetchError ? (
         <p class="text-sm" style="color: var(--text-secondary);">
-          No se pudo cargar el historial. Verifica la conexión o visita{' '}
+          {t('git.error')}{' '}
           <a
             href={`https://github.com/${REPO}`}
             target="_blank"

@@ -1,36 +1,23 @@
 ---
-const decisions = [
-  {
-    title:   'Astro SSG sobre Next.js',
-    why:     'TBT = 0ms en secciones estáticas. El HTML llega pre-renderizado; el navegador pinta sin esperar JS. Para un CV, cada millisegundo de TBT es indefendible.',
-    whyNot:  'Next.js tiene runtime overhead incluso en páginas estáticas. App Router añade complejidad que este proyecto no necesita.',
-    tag:     'performance',
-  },
-  {
-    title:   'CSS Custom Properties sobre CSS-in-JS',
-    why:     'El sistema de tokens vive en tokens.css: un fichero, tres temas, cero runtime. Los componentes consumen variables — no generan CSS en el cliente.',
-    whyNot:  'Styled Components y Emotion tienen coste de hidratación y riesgo de mismatch. Son la solución correcta cuando el CSS es genuinamente dinámico.',
-    tag:     'architecture',
-  },
-  {
-    title:   'TypeScript strict mode desde el inicio',
-    why:     'Los errores de tipo en cv.json — un campo mastery como string en lugar de number — se detectan en build time. El CV no llega roto a producción.',
-    whyNot:  'JSDoc es un workaround válido para migración. Strict mode es la garantía de contrato. Son la misma intención con diferente enforcement.',
-    tag:     'tooling',
-  },
-  {
-    title:   'Vanilla JS en ThemeOrchestrator',
-    why:     'Un selector de tema que cambia un atributo en el <html> no necesita un framework. 0 bytes de JS de React para esta funcionalidad.',
-    whyNot:  'React aquí sería over-engineering medible: +45KB de runtime para gestionar tres botones y un localStorage.setItem.',
-    tag:     'performance',
-  },
-]
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props
+const t = useTranslations(lang)
 
 const tagColor: Record<string, string> = {
   performance:  'var(--accent-to)',
   architecture: 'var(--accent-from)',
   tooling:      'var(--tag-violet)',
 }
+
+const decisions = [
+  { title: t('log.d1.title'), why: t('log.d1.why'), whyNot: t('log.d1.why_not'), tag: 'performance'  },
+  { title: t('log.d2.title'), why: t('log.d2.why'), whyNot: t('log.d2.why_not'), tag: 'architecture' },
+  { title: t('log.d3.title'), why: t('log.d3.why'), whyNot: t('log.d3.why_not'), tag: 'tooling'      },
+  { title: t('log.d4.title'), why: t('log.d4.why'), whyNot: t('log.d4.why_not'), tag: 'performance'  },
+]
 ---
 
 <section class="mb-16" aria-label="Engineering decisions log">
@@ -40,11 +27,10 @@ const tagColor: Record<string, string> = {
       style="color: var(--text-primary);"
     >
       <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
-      Log de decisiones técnicas
+      {t('log.heading')}
     </h2>
     <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
-      Cada decisión arquitectónica tiene un motivo técnico concreto
-      y una alternativa descartada con su razonamiento.
+      {t('log.intro')}
     </p>
   </div>
 
@@ -71,7 +57,7 @@ const tagColor: Record<string, string> = {
         </p>
 
         <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
-          <strong style="color: var(--text-primary);">por qué no la alternativa →</strong>{' '}
+          <strong style="color: var(--text-primary);">{t('log.why_not')}</strong>{' '}
           {d.whyNot}
         </p>
       </article>

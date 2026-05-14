@@ -33,9 +33,9 @@ const currentYear     = new Date().getFullYear();
 
   <div class="max-w-3xl mx-auto px-6 py-14">
 
-    <Hero meta={meta} />
+    <Hero meta={meta} lang={lang} />
 
-    <SkillsRadar />
+    <SkillsRadar lang={lang} />
 
     <section class="mb-16" aria-label="Technology stack">
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
@@ -55,7 +55,7 @@ const currentYear     = new Date().getFullYear();
       </div>
     </section>
 
-    <AboutEvolution />
+    <AboutEvolution lang={lang} />
 
     <section class="mb-16" aria-label="Work experience">
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
@@ -73,6 +73,7 @@ const currentYear     = new Date().getFullYear();
             period={exp.period}
             description={exp.description}
             stack={exp.stack}
+            lang={lang}
           />
         ))}
       </div>
@@ -88,20 +89,21 @@ const currentYear     = new Date().getFullYear();
               period={exp.period}
               description={exp.description}
               stack={exp.stack}
+              lang={lang}
             />
           ))}
         </div>
       )}
     </section>
 
-    <AIDesignProcess />
+    <AIDesignProcess lang={lang} />
 
-    <EngineeringLog />
+    <EngineeringLog lang={lang} />
 
-    <GitTree />
+    <GitTree lang={lang} />
 
     <div class="mb-16">
-      <About />
+      <About lang={lang} />
     </div>
 
     <section id="contacto" class="mb-16" aria-label="Contact">
@@ -120,6 +122,6 @@ const currentYear     = new Date().getFullYear();
 
   </div>
 
-  <PrintButton />
+  <PrintButton lang={lang} />
 
 </BaseLayout>

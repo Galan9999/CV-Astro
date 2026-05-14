@@ -1,5 +1,6 @@
 ---
 import { languages, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
   currentLang: Lang;
@@ -7,10 +8,11 @@ interface Props {
 }
 
 const { currentLang, currentPath } = Astro.props;
+const t    = useTranslations(currentLang);
 const langs = Object.keys(languages) as Lang[];
 ---
 
-<nav aria-label="Selección de idioma">
+<nav aria-label={t('lang.picker.label')}>
   <ul role="list">
     {langs.map(lang => (
       <li>

@@ -1,4 +1,7 @@
 ---
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
 interface Props {
   id:          string
   type:        'featured' | 'compact'
@@ -7,9 +10,11 @@ interface Props {
   period:      string
   description: string
   stack:       string[]
+  lang?:       Lang
 }
 
-const { type, company, role, period, description, stack } = Astro.props
+const { type, company, role, period, description, stack, lang = defaultLang } = Astro.props
+const t = useTranslations(lang)
 
 const isCompact     = type === 'compact'
 const visibleStack  = isCompact ? stack.slice(0, 2) : stack
@@ -28,7 +33,7 @@ const extraCount    = isCompact ? Math.max(0, stack.length - 2) : 0
     <p class="desc compact-desc">{description}</p>
     <div class="stack-row">
       {visibleStack.map(t => <span class="tag">{t}</span>)}
-      {extraCount > 0 && <span class="tag tag-extra">+{extraCount} más</span>}
+      {extraCount > 0 && <span class="tag tag-extra">{t('card.more').replace('{n}', String(extraCount))}</span>}
     </div>
   </article>
 ) : (

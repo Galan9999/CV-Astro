@@ -1,5 +1,11 @@
 ---
 import cvData from '../data/cv.json'
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props
+const t = useTranslations(lang)
 
 type Skill = { skill: string; mastery: number; category: string }
 
@@ -20,7 +26,7 @@ const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)
     style="color: var(--text-primary);"
   >
     <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
-    Stack & maestría
+    {t('skills.heading')}
   </h2>
 
   <div class="space-y-3">

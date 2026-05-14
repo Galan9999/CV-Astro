@@ -1,33 +1,40 @@
 ---
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props
+const t = useTranslations(lang)
+
 const phases = [
   {
-    title: 'Foundations & Growth',
-    tagline: 'Personal Evolution',
-    description: 'Etapa de formación de criterio analítico y resiliencia. El origen de mi enfoque en la resolución de problemas complejos.',
+    title:       t('evolution.phase1.title'),
+    tagline:     t('evolution.phase1.tagline'),
+    description: t('evolution.phase1.description'),
     color: 'var(--text-secondary)',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
   },
   {
-    title: 'Full Stack Mastery',
-    tagline: 'Software Engineering',
-    description: 'Especialización en arquitecturas modernas (React, Node, TypeScript). Enfoque en performance, escalabilidad y la modernización de sistemas en Legal Pigeon.',
+    title:       t('evolution.phase2.title'),
+    tagline:     t('evolution.phase2.tagline'),
+    description: t('evolution.phase2.description'),
     color: 'var(--accent-to)',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>`,
   },
   {
-    title: 'AI Orchestration',
-    tagline: 'Current Frontier',
-    description: 'Experto en integrar LLMs en el ciclo de desarrollo. Reducción de tiempos de entrega mediante flujos híbridos Gemini/Claude y automatización inteligente.',
+    title:       t('evolution.phase3.title'),
+    tagline:     t('evolution.phase3.tagline'),
+    description: t('evolution.phase3.description'),
     color: 'var(--accent-from)',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M9 2v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/></svg>`,
   },
-];
+]
 ---
 
 <section class="mb-16" aria-label="Career Evolution">
   <h2 class="text-xl font-semibold mb-8 flex items-center gap-2" style="color: var(--text-primary);">
     <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
-    Evolución
+    {t('evolution.heading')}
   </h2>
 
   <div class="relative">
@@ -67,8 +74,8 @@ const phases = [
     style="border-left: 2px solid var(--accent-from); background: color-mix(in srgb, var(--accent-from) 8%, transparent);"
   >
     <p class="text-sm leading-relaxed" style="color: var(--text-primary);">
-      <span class="font-mono text-xs mr-2" style="color: var(--accent-from);">→ Hoy</span>
-      Ayudando a empresas a transicionar de flujos legacy a arquitecturas AI-First.
+      <span class="font-mono text-xs mr-2" style="color: var(--accent-from);">{t('evolution.today.label')}</span>
+      {t('evolution.today.text')}
     </p>
   </div>
 </section>

@@ -1,47 +1,46 @@
 ---
-interface WorkflowStep {
-  step: number;
-  title: string;
-  model: string;
-  description: string;
-  accentColor: string;
-}
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 
-const steps: WorkflowStep[] = [
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props
+const t = useTranslations(lang)
+
+const steps = [
   {
     step: 1,
-    title: 'Conceptualización estratégica',
+    title: t('about.step1.title'),
     model: 'Gemini 1.5 Pro',
     description: 'Strategic planning & content architecture',
     accentColor: 'var(--accent-from)',
   },
   {
     step: 2,
-    title: 'Auditoría de código',
+    title: t('about.step2.title'),
     model: 'Claude 3.5 Sonnet',
     description: 'Code review & quality enforcement',
     accentColor: 'var(--tag-violet)',
   },
   {
     step: 3,
-    title: 'Generación de componentes',
+    title: t('about.step3.title'),
     model: 'Claude CLI',
     description: 'Astro components with selective hydration',
     accentColor: 'var(--accent-to)',
   },
-];
+]
 ---
 
 <section>
   <h2 class="text-xl font-semibold mb-2 flex items-center gap-2" style="color: var(--text-primary);">
     <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
-    About
+    {t('about.heading')}
   </h2>
   <p class="text-sm leading-relaxed mb-8" style="color: var(--text-secondary);">
-    Mi trayectoria en producto y sistemas me llevó de forma natural hacia la IA aplicada. Hoy diseño flujos de trabajo donde modelos como GPT-4o y Claude amplifican mi velocidad de desarrollo, sin sustituir el criterio de ingeniería.
+    {t('about.bio')}
   </p>
 
-  <h3 class="text-sm font-mono uppercase tracking-widest mb-5" style="color: var(--text-secondary);">AI Workflow</h3>
+  <h3 class="text-sm font-mono uppercase tracking-widest mb-5" style="color: var(--text-secondary);">{t('about.workflow.heading')}</h3>
 
   <div class="flex flex-col md:flex-row items-stretch gap-2">
     {steps.map((step, index) => (

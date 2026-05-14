@@ -1,4 +1,7 @@
 ---
+interface Props { label?: string }
+const { label = 'Select theme' } = Astro.props
+
 const themes = [
   { id: 'sleek',          label: 'Sleek',          icon: '◐' },
   { id: 'neo-brutalism',  label: 'Neo-Brutalism',  icon: '■' },
@@ -6,7 +9,7 @@ const themes = [
 ] satisfies { id: string; label: string; icon: string }[]
 ---
 
-<nav aria-label="Seleccionar tema" style="display: flex; gap: 8px; align-items: center;">
+<nav aria-label={label} style="display: flex; gap: 8px; align-items: center;">
   {themes.map(t => (
     <button
       data-theme-btn={t.id}
