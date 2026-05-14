@@ -20,36 +20,36 @@ const t = useTranslations(lang);
   <input type="hidden" name="form-name" value="contact" />
 
   <div>
-    <label for="cf-name" class="sr-only">Nombre</label>
+    <label for="cf-name" class="sr-only">{t('contact.field.name')}</label>
     <input
       id="cf-name"
       type="text"
       name="name"
-      placeholder="Nombre"
+      placeholder={t('contact.field.name')}
       required
       class="field w-full px-4 py-3 text-sm"
     />
   </div>
 
   <div>
-    <label for="cf-email" class="sr-only">Email</label>
+    <label for="cf-email" class="sr-only">{t('contact.field.email')}</label>
     <input
       id="cf-email"
       type="email"
       name="email"
-      placeholder="Email"
+      placeholder={t('contact.field.email')}
       required
       class="field w-full px-4 py-3 text-sm"
     />
   </div>
 
   <div>
-    <label for="cf-message" class="sr-only">Mensaje</label>
+    <label for="cf-message" class="sr-only">{t('contact.field.message')}</label>
     <textarea
       id="cf-message"
       name="message"
       rows="4"
-      placeholder="Mensaje"
+      placeholder={t('contact.field.message')}
       required
       class="field w-full px-4 py-3 text-sm resize-y"
     ></textarea>
