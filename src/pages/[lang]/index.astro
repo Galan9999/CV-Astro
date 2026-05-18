@@ -89,6 +89,71 @@ const currentYear     = new Date().getFullYear();
       <About lang={lang} />
     </div>
 
+    <section data-no-print class="mb-16" aria-label={t('nav.projects')}>
+      <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
+        <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+        {t('nav.projects')}
+      </h2>
+
+      <div style="background: var(--bg-surface); border: var(--border-width) solid var(--border); border-radius: 0.5rem; padding: 1.25rem;">
+        <p class="font-semibold mb-1" style="color: var(--text-primary);">Sentio</p>
+        <p class="text-sm mb-3" style="color: var(--text-secondary);">Ecosistema Full Stack modular. Arquitectura bajo principios SOLID, seguridad JWT, análisis estático con SonarCloud y auditoría de accesibilidad con Pa11y. Orquestado con CI/CD (GitHub Actions).</p>
+        <div class="flex flex-wrap gap-1.5">
+          {['React', 'TypeScript', 'Redux', 'Express', 'JWT', 'Jest', 'GitHub Actions', 'Pa11y'].map(badge => (
+            <span class="font-mono text-xs border border-neutral-700 bg-neutral-900 text-neutral-300 px-2 py-0.5 rounded">{badge}</span>
+          ))}
+        </div>
+      </div>
+
+      <p
+        class="text-sm mt-4 font-mono"
+        style="color: var(--text-secondary); border-left: 2px solid var(--border); padding-left: 0.75rem;"
+      >
+        {t('projects.private.note')}
+      </p>
+    </section>
+
+    <section data-no-print class="mb-16" aria-label={t('research.heading')}>
+      <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
+        <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+        {t('research.heading')}
+      </h2>
+
+      <div class="flex flex-wrap gap-4">
+        <div class="rounded-lg p-4 text-sm leading-relaxed flex-1" style="background: var(--bg-surface); border: var(--border-width) solid var(--accent-from); color: var(--text-secondary);">
+          <p class="font-semibold mb-2" style="color: var(--text-primary);">Complejidad & Sistemas</p>
+          <p>Ciencia de la Complejidad y Sistemas Dinámicos — lectura activa en teoría de redes, comportamiento emergente y modelos computacionales. Referentes: Melanie Mitchell, Geoffrey West.</p>
+        </div>
+        <div class="rounded-lg p-4 text-sm leading-relaxed flex-1" style="background: var(--bg-surface); border: var(--border-width) solid var(--border); color: var(--text-secondary);">
+          <p class="font-semibold mb-2" style="color: var(--text-primary);">Más allá del stack técnico</p>
+          <p>Exploración de dominios adyacentes: macroeconomía, biología de sistemas y pensamiento de primer principio aplicado a arquitectura de software.</p>
+        </div>
+      </div>
+    </section>
+
+    <section data-no-print class="mb-16" aria-label={t('community.heading')}>
+      <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
+        <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+        {t('community.heading')}
+      </h2>
+
+      <p class="text-sm mb-4" style="color: var(--text-secondary);">Asistencia habitual (~ 1 charla/semana) a meetups y eventos de la comunidad tech de Barcelona.</p>
+
+      <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+        {[
+          'Optimización de rendimiento frontend y Core Web Vitals',
+          'Arquitecturas escalables en el ecosistema JavaScript/TypeScript',
+          'Flujos de desarrollo modernos asistidos por IA (AI DX)',
+          'Charlas de ciencia y tecnología en inglés (comprensión técnica avanzada)',
+        ].map(topic => (
+          <li style="position: relative; padding-left: 1.5rem;">
+            <span style="position: absolute; left: 0; color: var(--accent-from);" aria-hidden="true">→</span>
+            {topic}
+          </li>
+        ))}
+      </ul>
+    </section>
+
     <section id="contacto" class="mb-16" aria-label={t('contact.section.arialabel')}>
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
