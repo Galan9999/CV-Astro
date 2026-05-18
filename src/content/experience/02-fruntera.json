@@ -1,0 +1,13 @@
+{
+  "company": "Fruntera",
+  "role": "Front-End Developer",
+  "period": "Sept. 2023 - Jun. 2024",
+  "location": "Barcelona, España",
+  "highlight": "Desarrollo de aplicaciones de alta interactividad y e-commerce orientados al rendimiento en cliente, conectando diseño de producto (Figma) con código modular altamente testeado.",
+  "achievements": [
+    "Diseño y desarrollo de un Dashboard/Page Builder interactivo, capacitando al usuario final para auto-configurar y desplegar sus propias landings mediante renderizado dinámico de componentes.",
+    "Desarrollo frontend de un E-commerce modular, optimizando Core Web Vitals mediante estructuración limpia de componentes y reduciendo el Total Blocking Time (TBT).",
+    "Abstracción y maquetación de fidelidad estricta desde Figma-to-Code, asegurando calidad y cobertura mediante pruebas unitarias con Jest bajo principios SOLID."
+  ],
+  "stack": ["Figma", "Clean Code", "Principios SOLID", "Dynamic Rendering", "Jest", "Tailwind CSS"]
+}

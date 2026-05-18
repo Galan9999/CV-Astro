@@ -14,14 +14,13 @@ const projects = defineCollection({
 const experience = defineCollection({
   type: 'data',
   schema: z.object({
-    company: z.string(),
-    role: z.string(),
-    period: z.object({
-      start: z.string(),
-      end: z.string(),
-    }),
+    company:      z.string(),
+    role:         z.string(),
+    period:       z.string(),
+    location:     z.string(),
+    highlight:    z.string(),
     achievements: z.array(z.string()),
-    tech: z.array(z.string()),
+    stack:        z.array(z.string()),
   }),
 });
 
