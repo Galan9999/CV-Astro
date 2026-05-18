@@ -35,7 +35,8 @@ const { company, role, period, location, highlight, achievements, stack } = Astr
     {stack.map(item => (
       <span
         data-stack-badge
-        class="font-mono text-xs border border-neutral-700 bg-neutral-900 text-neutral-300 px-2 py-0.5 rounded"
+        class="font-mono text-xs px-2 py-0.5"
+        style="background: var(--bg-elevated); color: var(--text-secondary); border: var(--border-width) solid var(--border); border-radius: calc(var(--radius) / 2);"
       >
         {item}
       </span>
@@ -145,14 +146,6 @@ const { company, role, period, location, highlight, achievements, stack } = Astr
     font-size: 0.5rem;
     top: 0.45rem;
     line-height: 1;
-  }
-
-  /* Non-dark themes: override hardcoded badge colors */
-  [data-theme="neo-brutalism"] .exp-card [data-stack-badge],
-  [data-theme="high-contrast"] .exp-card [data-stack-badge] {
-    background: var(--bg-elevated) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border) !important;
   }
 
   /* ── Print ─────────────────────────────────────────────── */
