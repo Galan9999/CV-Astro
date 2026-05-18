@@ -118,6 +118,11 @@ export const ui = {
     'skills.print.heading': 'Habilidades',
     'lang.level.b2_uncert':  'B2-C1 (No certificado)',
     'lang.level.b1b2_uncut': 'B1-B2 (No certificado)',
+    'nav.stack':      'Stack',
+    'nav.log':        'Log',
+    'nav.proceso':    'IA',
+    'nav.about':      'About',
+    'nav.git':        'Git',
   },
   en: {
     'hero.role':        'Full Stack Engineer | AI Workflow Specialist',
@@ -228,6 +233,11 @@ export const ui = {
     'skills.print.heading': 'Skills',
     'lang.level.b2_uncert':  'B2-C1 (Uncertified)',
     'lang.level.b1b2_uncut': 'B1-B2 (Uncertified)',
+    'nav.stack':      'Stack',
+    'nav.log':        'Log',
+    'nav.proceso':    'AI',
+    'nav.about':      'About',
+    'nav.git':        'Git',
   },
   fr: {
     'hero.role':        'Ingénieur Full Stack | Spécialiste des flux IA',
@@ -338,6 +348,11 @@ export const ui = {
     'skills.print.heading': 'Compétences',
     'lang.level.b2_uncut':   'B2 (Non certifié)',
     'lang.level.b1b2_uncut': 'B1-B2 (Non certifié)',
+    'nav.stack':      'Stack',
+    'nav.log':        'Log',
+    'nav.proceso':    'IA',
+    'nav.about':      'About',
+    'nav.git':        'Git',
   },
   ca: {
     'hero.role':        'Enginyer Full Stack | Especialista en IA',
@@ -448,6 +463,11 @@ export const ui = {
     'skills.print.heading': 'Habilitats',
     'lang.level.b2_uncut':   'B2 (No certificat)',
     'lang.level.b1b2_uncut': 'B1-B2 (No certificat)',
+    'nav.stack':      'Stack',
+    'nav.log':        'Log',
+    'nav.proceso':    'IA',
+    'nav.about':      'About',
+    'nav.git':        'Git',
   },
 } as const;
 
