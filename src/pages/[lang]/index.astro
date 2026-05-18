@@ -37,7 +37,7 @@ const currentYear     = new Date().getFullYear();
 
     <SkillsRadar lang={lang} />
 
-    <section class="mb-16" aria-label={t('section.stack.arialabel')}>
+    <section id="stack" class="mb-16" aria-label={t('section.stack.arialabel')}>
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
         {t('section.stack.heading')}
@@ -57,7 +57,7 @@ const currentYear     = new Date().getFullYear();
 
     <AboutEvolution lang={lang} />
 
-    <section class="mb-16" aria-label={t('section.experience.arialabel')}>
+    <section id="experiencia" class="mb-16" aria-label={t('section.experience.arialabel')}>
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
         {t('nav.experience')}
@@ -79,13 +79,13 @@ const currentYear     = new Date().getFullYear();
       </div>
     </section>
 
-    <AIDesignProcess lang={lang} />
+    <div id="proceso"><AIDesignProcess lang={lang} /></div>
 
-    <EngineeringLog lang={lang} />
+    <div id="log"><EngineeringLog lang={lang} /></div>
 
-    <GitTree lang={lang} />
+    <div id="git"><GitTree lang={lang} /></div>
 
-    <div class="mb-16">
+    <div id="about" class="mb-16">
       <About lang={lang} />
     </div>
 
