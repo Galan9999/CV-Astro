@@ -1,0 +1,14 @@
+{
+  "company": "Sentio",
+  "role": "Full Stack Developer",
+  "period": "2022 - 2023",
+  "location": "Proyecto personal (Freelance)",
+  "highlight": "Arquitectura Full Stack end-to-end bajo principios SOLID, con foco en calidad de código, accesibilidad WCAG y automatización del pipeline de CI/CD.",
+  "achievements": [
+    "Arquitectura de componentes React con responsabilidad única, gestión de estado con Redux y tipado estricto con TypeScript para detección temprana de errores.",
+    "API REST con Express y autenticación JWT; pruebas unitarias con Jest e integración con Supertest, garantizando cobertura y confiabilidad de cada endpoint.",
+    "Pipeline CI/CD con GitHub Actions desplegando en Netlify, análisis estático con SonarCloud y git hooks con Husky para enforcement de calidad pre-commit.",
+    "Accesibilidad auditada con Pa11y siguiendo pautas WCAG, asegurando que la plataforma sea usable por todos los usuarios."
+  ],
+  "stack": ["React", "Redux", "TypeScript", "Express", "JWT", "Jest", "Supertest", "GitHub Actions", "SonarCloud", "Pa11y"]
+}
