@@ -114,6 +114,8 @@ export const ui = {
     'lang.level.c1':       'C1 — Avanzado',
     'lang.level.b2':       'B2 — Intermedio alto',
     'education.heading':   'Educación',
+    'lang.ca':             'Catalán',
+    'skills.print.heading': 'Habilidades',
   },
   en: {
     'hero.role':        'Full Stack Engineer | AI Workflow Specialist',
@@ -220,6 +222,8 @@ export const ui = {
     'lang.level.c1':       'C1 — Advanced',
     'lang.level.b2':       'B2 — Upper Intermediate',
     'education.heading':   'Education',
+    'lang.ca':             'Catalan',
+    'skills.print.heading': 'Skills',
   },
   fr: {
     'hero.role':        'Ingénieur Full Stack | Spécialiste des flux IA',
@@ -326,6 +330,8 @@ export const ui = {
     'lang.level.c1':       'C1 — Avancé',
     'lang.level.b2':       'B2 — Intermédiaire supérieur',
     'education.heading':   'Éducation',
+    'lang.ca':             'Catalan',
+    'skills.print.heading': 'Compétences',
   },
   ca: {
     'hero.role':        'Enginyer Full Stack | Especialista en IA',
@@ -432,6 +438,8 @@ export const ui = {
     'lang.level.c1':       'C1 — Avançat',
     'lang.level.b2':       'B2 — Intermedi alt',
     'education.heading':   'Educació',
+    'lang.ca':             'Català',
+    'skills.print.heading': 'Habilitats',
   },
 } as const;
 

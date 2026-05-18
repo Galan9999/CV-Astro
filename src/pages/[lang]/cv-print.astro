@@ -3,14 +3,15 @@ import '@fontsource/geist-sans';
 import '@fontsource/geist-mono';
 import { getCollection } from 'astro:content';
 import cvData from '@data/cv.json';
-import { languages } from '../../i18n/ui';
-import { getLangFromUrl } from '../../i18n/utils';
+import { languages, type UiKey } from '../../i18n/ui';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return Object.keys(languages).map(lang => ({ params: { lang } }));
 }
 
 const lang = getLangFromUrl(Astro.url);
+const t    = useTranslations(lang);
 
 const experienceEntries = await getCollection('experience',
   ({ id }) => id.startsWith(`${lang}/`)
@@ -19,10 +20,11 @@ const { meta } = cvData;
 
 const summary = "Full Stack Developer con foco en Frontend de alto rendimiento. Especializado en arquitecturas React escalables, sistemas de autorización CASL/RBAC, Design Tokens y flujos AI-Driven. Orientado a producto, con criterio técnico propio.";
 
-const languages_list = [
-  { lang: "Castellano", level: "Nativo",  pct: 100 },
-  { lang: "Inglés",     level: "C1",      pct: 85  },
-  { lang: "Francés",    level: "B2",      pct: 65  },
+const languages_list: Array<{ labelKey: UiKey; levelKey: UiKey; pct: number }> = [
+  { labelKey: 'lang.es', levelKey: 'lang.level.native', pct: 100 },
+  { labelKey: 'lang.ca', levelKey: 'lang.level.native', pct: 100 },
+  { labelKey: 'lang.en', levelKey: 'lang.level.c1',     pct: 85  },
+  { labelKey: 'lang.fr', levelKey: 'lang.level.b2',     pct: 65  },
 ];
 
 const education = [
@@ -100,7 +102,7 @@ const githubProfile  = `https://github.com/${githubUsername}`;
       </section>
 
       <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Contacto">
-        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Contacto</h2>
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('contact.section.arialabel').toUpperCase()}</h2>
         <div class="flex flex-col gap-2.5">
           <a
             href={`mailto:${meta.email}`}
@@ -148,7 +150,7 @@ const githubProfile  = `https://github.com/${githubUsername}`;
       </section>
 
       <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Habilidades técnicas">
-        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Habilidades</h2>
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('skills.print.heading').toUpperCase()}</h2>
         <div class="flex flex-col gap-4">
           {Object.entries(skillsMatrix).map(([category, skills]) => (
             <div>
@@ -164,13 +166,13 @@ const githubProfile  = `https://github.com/${githubUsername}`;
       </section>
 
       <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Idiomas">
-        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Idiomas</h2>
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('languages.heading').toUpperCase()}</h2>
         <div class="flex flex-col gap-3">
           {languages_list.map(l => (
             <div>
               <div class="flex justify-between items-baseline mb-1">
-                <span class="text-xs text-neutral-700">{l.lang}</span>
-                <span class="font-mono text-[10px] text-neutral-400">{l.level}</span>
+                <span class="text-xs text-neutral-700">{t(l.labelKey)}</span>
+                <span class="font-mono text-[10px] text-neutral-400">{t(l.levelKey)}</span>
               </div>
               <div class="h-1 bg-neutral-200 rounded-full w-full">
                 <div class="h-1 bg-neutral-400 rounded-full" style={`width: ${l.pct}%`} />
@@ -181,7 +183,7 @@ const githubProfile  = `https://github.com/${githubUsername}`;
       </section>
 
       <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Educación">
-        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Educación</h2>
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('education.heading').toUpperCase()}</h2>
         <div class="flex flex-col gap-3">
           {education.map(e => (
             <div>
