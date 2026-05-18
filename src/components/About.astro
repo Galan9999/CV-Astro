@@ -11,21 +11,21 @@ const steps = [
     step: 1,
     title: t('about.step1.title'),
     model: 'Gemini 1.5 Pro',
-    description: 'Strategic planning & content architecture',
+    description: t('about.step1.description'),
     accentColor: 'var(--accent-from)',
   },
   {
     step: 2,
     title: t('about.step2.title'),
     model: 'Claude 3.5 Sonnet',
-    description: 'Code review & quality enforcement',
+    description: t('about.step2.description'),
     accentColor: 'var(--tag-violet)',
   },
   {
     step: 3,
     title: t('about.step3.title'),
     model: 'Claude CLI',
-    description: 'Astro components with selective hydration',
+    description: t('about.step3.description'),
     accentColor: 'var(--accent-to)',
   },
 ]
@@ -50,7 +50,7 @@ const steps = [
           style={`border-left: 2px solid ${step.accentColor}; background: color-mix(in srgb, ${step.accentColor} 10%, transparent);`}
         >
           <div class="text-xs mb-1.5" style={`color: ${step.accentColor};`}>
-            step {step.step < 10 ? `0${step.step}` : step.step}
+            {t('about.step.label')} {step.step < 10 ? `0${step.step}` : step.step}
           </div>
           <div class="text-sm font-semibold mb-1 leading-snug" style="color: var(--text-primary);">{step.title}</div>
           <div class="text-xs mb-2" style={`color: ${step.accentColor};`}>{step.model}</div>

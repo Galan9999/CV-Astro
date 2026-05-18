@@ -20,7 +20,7 @@ const t = useTranslations(lang)
 const links = [
   { href: meta.github,                label: 'GitHub'   },
   { href: `https://${meta.linkedin}`, label: 'LinkedIn' },
-  { href: `mailto:${meta.email}`,     label: 'Email'    },
+  { href: `mailto:${meta.email}`,     label: t('hero.link.email') },
 ].filter(l => l.href && !l.href.includes('undefined'))
 ---
 

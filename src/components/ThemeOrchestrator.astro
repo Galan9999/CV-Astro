@@ -1,15 +1,18 @@
 ---
-interface Props { label?: string }
-const { label = 'Select theme' } = Astro.props
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+interface Props { label?: string; lang?: Lang }
+const { lang = defaultLang } = Astro.props
+const t = useTranslations(lang)
 
 const themes = [
-  { id: 'sleek',          label: 'Sleek',          icon: '◐' },
-  { id: 'neo-brutalism',  label: 'Neo-Brutalism',  icon: '■' },
-  { id: 'high-contrast',  label: 'High Contrast',  icon: '◉' },
+  { id: 'sleek',         label: t('theme.sleek.label'),         icon: '◐' },
+  { id: 'neo-brutalism', label: t('theme.neo-brutalism.label'), icon: '■' },
+  { id: 'high-contrast', label: t('theme.high-contrast.label'), icon: '◉' },
 ] satisfies { id: string; label: string; icon: string }[]
 ---
 
-<nav aria-label={label} style="display: flex; gap: 8px; align-items: center;">
+<nav aria-label={t('theme.picker.label')} data-lang={lang} style="display: flex; gap: 8px; align-items: center;">
   {themes.map(t => (
     <button
       data-theme-btn={t.id}
@@ -49,7 +52,16 @@ const themes = [
       })
 
     const live = document.getElementById('theme-live')
-    if (live) live.textContent = `Tema "${labels[theme]}" activado`
+    if (live) {
+      const lang = document.querySelector('[data-lang]')?.getAttribute('data-lang') ?? 'es'
+      const announcements: Record<string, string> = {
+        es: `Tema "${labels[theme]}" activado`,
+        en: `Theme "${labels[theme]}" activated`,
+        fr: `Thème "${labels[theme]}" activé`,
+        ca: `Tema "${labels[theme]}" activat`,
+      }
+      live.textContent = announcements[lang] ?? announcements['es']
+    }
   }
 
   const saved = localStorage.getItem(STORAGE_KEY) as Theme | null

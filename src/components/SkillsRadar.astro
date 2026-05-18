@@ -18,6 +18,11 @@ const categoryColor: Record<string, string> = {
 }
 
 const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)
+const categoryLabel: Record<string, string> = {
+  frontend: t('skills.category.frontend'),
+  craft:    t('skills.category.craft'),
+  systems:  t('skills.category.systems'),
+}
 ---
 
 <section class="mb-16" aria-label="Skills and mastery">
@@ -63,7 +68,7 @@ const sorted = [...skills].sort((a, b) => b.mastery - a.mastery)
           style={`background: ${color};`}
           aria-hidden="true"
         />
-        {cat}
+        {categoryLabel[cat] ?? cat}
       </span>
     ))}
   </div>

@@ -27,7 +27,7 @@ const experienceEntries = await getCollection('experience');
 const currentYear     = new Date().getFullYear();
 ---
 
-<BaseLayout title={`${meta.name} — ${meta.role}`} description={`CV of ${meta.name}, ${meta.role}`} lang={lang}>
+<BaseLayout title={`${meta.name} — ${meta.role}`} description={t('meta.page.description').replace('{name}', meta.name).replace('{role}', meta.role)} lang={lang}>
 
   <div class="max-w-3xl mx-auto px-6 py-14">
 
@@ -35,10 +35,10 @@ const currentYear     = new Date().getFullYear();
 
     <SkillsRadar lang={lang} />
 
-    <section class="mb-16" aria-label="Technology stack">
+    <section class="mb-16" aria-label={t('section.stack.arialabel')}>
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
-        Stack
+        {t('section.stack.heading')}
       </h2>
       <div class="flex flex-wrap gap-2">
         {stack.map(item => (
@@ -55,7 +55,7 @@ const currentYear     = new Date().getFullYear();
 
     <AboutEvolution lang={lang} />
 
-    <section class="mb-16" aria-label="Work experience">
+    <section class="mb-16" aria-label={t('section.experience.arialabel')}>
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
         {t('nav.experience')}
@@ -87,7 +87,7 @@ const currentYear     = new Date().getFullYear();
       <About lang={lang} />
     </div>
 
-    <section id="contacto" class="mb-16" aria-label="Contact">
+    <section id="contacto" class="mb-16" aria-label={t('contact.section.arialabel')}>
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
         {t('contact.heading')}
@@ -97,7 +97,7 @@ const currentYear     = new Date().getFullYear();
 
     <footer class="border-t pt-8" style="border-color: var(--border);" role="contentinfo">
       <p class="font-mono text-xs text-center" style="color: var(--text-secondary);">
-        © {currentYear} {meta.name} · Built with Astro 4 + Tailwind CSS
+        © {currentYear} {meta.name} · {t('footer.built_with')}
       </p>
     </footer>
 

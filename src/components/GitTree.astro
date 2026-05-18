@@ -63,7 +63,7 @@ try {
 }
 ---
 
-<section class="mb-16" aria-label="Build history">
+<section class="mb-16" aria-label={t('git.section.arialabel')}>
   <details class="git-tree rounded-lg border overflow-hidden" style="border-color: var(--border);">
     <summary
       class="flex items-center gap-3 px-5 py-4 cursor-pointer select-none font-mono text-sm"
@@ -73,7 +73,7 @@ try {
       <span class="font-semibold">{t('git.heading')}</span>
       {!fetchError && (
         <span class="ml-auto text-xs" style="color: var(--text-secondary);">
-          ({commits.length} commits)
+          ({commits.length} {t('git.commits_count')})
         </span>
       )}
     </summary>

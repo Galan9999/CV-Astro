@@ -11,6 +11,11 @@ const tagColor: Record<string, string> = {
   architecture: 'var(--accent-from)',
   tooling:      'var(--tag-violet)',
 }
+const tagLabel: Record<string, string> = {
+  performance:  t('log.tag.performance'),
+  architecture: t('log.tag.architecture'),
+  tooling:      t('log.tag.tooling'),
+}
 
 const decisions = [
   { title: t('log.d1.title'), why: t('log.d1.why'), whyNot: t('log.d1.why_not'), tag: 'performance'  },
@@ -20,7 +25,7 @@ const decisions = [
 ]
 ---
 
-<section class="mb-16" aria-label="Engineering decisions log">
+<section class="mb-16" aria-label={t('log.section.arialabel')}>
   <div class="mb-6">
     <h2
       class="text-xl font-semibold mb-2 flex items-center gap-2"
@@ -45,7 +50,7 @@ const decisions = [
           class="inline-block text-xs font-mono px-2 py-0.5 rounded mb-3"
           style={`background: color-mix(in srgb, ${tagColor[d.tag]} 15%, transparent); color: ${tagColor[d.tag]};`}
         >
-          {d.tag}
+          {tagLabel[d.tag]}
         </span>
 
         <h3 class="text-base font-semibold mb-2" style="color: var(--text-primary);">
