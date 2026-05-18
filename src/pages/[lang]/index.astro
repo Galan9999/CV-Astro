@@ -10,8 +10,8 @@ import SkillsRadar      from '@components/SkillsRadar.astro';
 import AboutEvolution   from '@components/AboutEvolution.astro';
 import PrintButton      from '@components/PrintButton.astro';
 import ContactForm      from '@components/ContactForm.astro';
+import { getCollection } from 'astro:content';
 import cvData           from '@data/cv.json';
-import experienceData   from '@data/experience.json';
 import { languages } from '../../i18n/ui';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
@@ -23,9 +23,7 @@ const lang = getLangFromUrl(Astro.url);
 const t    = useTranslations(lang);
 
 const { meta, stack } = cvData;
-const { experience }  = experienceData;
-const featured        = experience.filter(e => e.type === 'featured');
-const compact         = experience.filter(e => e.type === 'compact');
+const experienceEntries = await getCollection('experience');
 const currentYear     = new Date().getFullYear();
 ---
 
@@ -64,36 +62,19 @@ const currentYear     = new Date().getFullYear();
       </h2>
 
       <div class="space-y-4">
-        {featured.map(exp => (
+        {experienceEntries.map(entry => (
           <ExperienceCard
-            id={exp.id}
-            type={exp.type as 'featured' | 'compact'}
-            company={exp.company}
-            role={exp.role}
-            period={exp.period}
-            description={exp.description}
-            stack={exp.stack}
+            company={entry.data.company}
+            role={entry.data.role}
+            period={entry.data.period}
+            location={entry.data.location}
+            highlight={entry.data.highlight}
+            achievements={entry.data.achievements}
+            stack={entry.data.stack}
             lang={lang}
           />
         ))}
       </div>
-
-      {compact.length > 0 && (
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
-          {compact.map(exp => (
-            <ExperienceCard
-              id={exp.id}
-              type={exp.type as 'featured' | 'compact'}
-              company={exp.company}
-              role={exp.role}
-              period={exp.period}
-              description={exp.description}
-              stack={exp.stack}
-              lang={lang}
-            />
-          ))}
-        </div>
-      )}
     </section>
 
     <AIDesignProcess lang={lang} />
