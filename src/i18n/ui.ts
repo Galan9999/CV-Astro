@@ -116,6 +116,8 @@ export const ui = {
     'education.heading':   'Educación',
     'lang.ca':             'Catalán',
     'skills.print.heading': 'Habilidades',
+    'lang.level.b2_uncert':  'B2-C1 (No certificado)',
+    'lang.level.b1b2_uncut': 'B1-B2 (No certificado)',
   },
   en: {
     'hero.role':        'Full Stack Engineer | AI Workflow Specialist',
@@ -224,6 +226,8 @@ export const ui = {
     'education.heading':   'Education',
     'lang.ca':             'Catalan',
     'skills.print.heading': 'Skills',
+    'lang.level.b2_uncert':  'B2-C1 (Uncertified)',
+    'lang.level.b1b2_uncut': 'B1-B2 (Uncertified)',
   },
   fr: {
     'hero.role':        'Ingénieur Full Stack | Spécialiste des flux IA',
@@ -332,6 +336,8 @@ export const ui = {
     'education.heading':   'Éducation',
     'lang.ca':             'Catalan',
     'skills.print.heading': 'Compétences',
+    'lang.level.b2_uncut':   'B2 (Non certifié)',
+    'lang.level.b1b2_uncut': 'B1-B2 (Non certifié)',
   },
   ca: {
     'hero.role':        'Enginyer Full Stack | Especialista en IA',
@@ -440,6 +446,8 @@ export const ui = {
     'education.heading':   'Educació',
     'lang.ca':             'Català',
     'skills.print.heading': 'Habilitats',
+    'lang.level.b2_uncut':   'B2 (No certificat)',
+    'lang.level.b1b2_uncut': 'B1-B2 (No certificat)',
   },
 } as const;
 
