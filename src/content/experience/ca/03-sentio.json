@@ -1,0 +1,9 @@
+{
+  "company": "Sentio",
+  "role": "Full Stack Developer",
+  "period": "2022 - 2023",
+  "location": "Projecte personal",
+  "highlight": "Stack complet React + Redux + TypeScript / Express + JWT amb pipeline CI/CD (GitHub Actions → Netlify), anàlisi estàtica SonarCloud i accessibilitat auditada amb Pa11y.",
+  "achievements": [],
+  "stack": ["React", "TypeScript", "Redux", "Express", "JWT", "Jest", "GitHub Actions", "Pa11y"]
+}

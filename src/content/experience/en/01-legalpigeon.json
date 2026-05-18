@@ -1,0 +1,13 @@
+{
+  "company": "Legal Pigeon",
+  "role": "Full Stack Developer",
+  "period": "Jun. 2024 - Present",
+  "location": "Barcelona, Spain (Hybrid)",
+  "highlight": "Technical leadership in Frontend modernization through agnostic design systems, robust security with centralized access control, and workflow optimization with AI (Platform Engineering).",
+  "achievements": [
+    "Implementation and centralization of the ability-based authorization system using CASL in the backend, eliminating permission code duplication and securing the platform's multi-tenant infrastructure.",
+    "Architecture and migration of the frontend towards an agnostic Design Tokens and component tokens structure, drastically accelerating interface development and visual consistency.",
+    "Establishment of an AI-Driven Development workflow, designing conceptual modules (Gems) for architecture governance and leveraging agents (Claude) for automated design extraction, component generation, and cloud documentation (AWS/S3)."
+  ],
+  "stack": ["AWS (S3)", "CASL", "Node.js", "Design Tokens", "TypeScript", "AI Tooling (Claude/Gems)"]
+}
