@@ -30,9 +30,13 @@ const languages_list: Array<{ labelKey: UiKey; levelKey: UiKey; pct: number }> =
 const skillsMatrix: Record<string, string[]> = {
   "Frontend":        ["React 18", "TypeScript 5", "Astro", "Tailwind CSS", "Redux / Zustand"],
   "Backend & Infra": ["Node.js", "AWS S3", "REST APIs"],
-  "Calidad":         ["Vitest", "Cypress", "Jest", "WCAG 2.1 AA"],
   "Workflow":        ["Design Tokens", "CASL / RBAC", "AI Tooling", "Figma", "Git"],
 };
+
+const education = [
+  { institution: "Ironhack",     degree: "Full Stack Web Development Bootcamp",                    year: "2020" },
+  { institution: "Universitat",  degree: "Economics Degree — Advanced Credits (Pending completion)", year: "" },
+];
 
 const communityTopics = [t('community.topic1'), t('community.topic2'), t('community.topic3')];
 const advancedReadingPillars = [t('reading.pillar1'), t('reading.pillar2'), t('reading.pillar3')];
@@ -183,10 +187,14 @@ const githubProfile  = `https://github.com/${githubUsername}`;
 
       <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Educación">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('education.heading').toUpperCase()}</h2>
-        <div>
-          <p class="text-xs font-semibold text-neutral-800">{education_extended.tech.institution}</p>
-          <p class="text-[10px] text-neutral-500 leading-relaxed mt-0.5">{education_extended.tech.degree}</p>
-          <p class="font-mono text-[10px] text-neutral-400 mt-0.5">{education_extended.tech.year}</p>
+        <div class="flex flex-col gap-3">
+          {education.map(entry => (
+            <div>
+              <p class="text-xs font-semibold text-neutral-800">{entry.institution}</p>
+              <p class="text-[10px] text-neutral-500 leading-relaxed mt-0.5">{entry.degree}</p>
+              {entry.year && <p class="font-mono text-[10px] text-neutral-400 mt-0.5">{entry.year}</p>}
+            </div>
+          ))}
         </div>
       </section>
 
