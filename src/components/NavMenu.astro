@@ -241,22 +241,30 @@ const sections = [
     if (e.key === 'Escape') closeThemeMenu();
   });
 
+  const STORAGE_KEY = 'cv-theme';
+  const VALID_THEMES = ['sleek', 'neo-brutalism', 'high-contrast'] as const;
+  type Theme = typeof VALID_THEMES[number];
+
+  function applyTheme(theme: Theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+    if (currentIcon) currentIcon.textContent = themeIcons[theme] ?? '◑';
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-btn]').forEach(b => {
+      b.setAttribute('aria-checked', String(b.dataset.themeBtn === theme));
+    });
+  }
+
   document.querySelectorAll<HTMLButtonElement>('[data-theme-btn]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const theme = btn.dataset.themeBtn ?? 'sleek';
-      (window as any).setTheme?.(theme);
-      if (currentIcon) currentIcon.textContent = themeIcons[theme] ?? '◐';
-      document.querySelectorAll('[data-theme-btn]').forEach(b => {
-        b.setAttribute('aria-checked', String(b === btn));
-      });
+      const theme = (btn.dataset.themeBtn ?? 'sleek') as Theme;
+      if (VALID_THEMES.includes(theme)) applyTheme(theme);
       closeThemeMenu();
     });
   });
 
-  const savedTheme = localStorage.getItem('cv-theme') ?? 'sleek';
-  if (currentIcon) currentIcon.textContent = themeIcons[savedTheme] ?? '◐';
-  document.querySelector(`[data-theme-btn="${savedTheme}"]`)
-    ?.setAttribute('aria-checked', 'true');
+  const savedTheme = (localStorage.getItem(STORAGE_KEY) ?? 'sleek') as Theme;
+  const validSaved = VALID_THEMES.includes(savedTheme) ? savedTheme : 'sleek';
+  applyTheme(validSaved);
 </script>
 
 <style>
