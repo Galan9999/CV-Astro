@@ -1,7 +1,6 @@
 ---
 import { languages, defaultLang, type Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
-import ThemeOrchestrator from './ThemeOrchestrator.astro';
 
 interface Props {
   lang?: Lang;
@@ -20,12 +19,12 @@ const flags: Record<Lang, string> = {
 };
 
 const sections = [
-  { href: '#stack',       label: t('section.stack.heading') },
-  { href: '#experiencia', label: t('nav.experience')        },
-  { href: '#proceso',     label: t('ai.heading')            },
-  { href: '#log',         label: t('log.heading')           },
-  { href: '#about',       label: t('about.heading')         },
-  { href: '#contacto',    label: t('contact.heading')       },
+  { href: '#stack',       label: t('section.stack.heading'), short: t('nav.stack')      },
+  { href: '#experiencia', label: t('nav.experience'),        short: t('nav.experience') },
+  { href: '#proceso',     label: t('ai.heading'),            short: t('nav.proceso')    },
+  { href: '#log',         label: t('log.heading'),           short: t('nav.log')        },
+  { href: '#about',       label: t('about.heading'),         short: t('nav.about')      },
+  { href: '#contacto',    label: t('contact.heading'),       short: t('nav.contact')    },
 ];
 ---
 
@@ -40,7 +39,7 @@ const sections = [
     <ul class="nav-sections" role="list">
       {sections.map(s => (
         <li>
-          <a href={s.href} class="nav-link">{s.label}</a>
+          <a href={s.href} class="nav-link">{s.short}</a>
         </li>
       ))}
     </ul>
@@ -62,7 +61,47 @@ const sections = [
         ))}
       </ul>
 
-      <ThemeOrchestrator lang={lang} />
+      <div class="theme-dropdown" id="theme-dropdown-wrapper">
+        <button
+          id="theme-toggle-btn"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="theme-dropdown-menu"
+          aria-label={t('theme.picker.label')}
+          class="theme-toggle-btn"
+        >
+          <span id="theme-current-icon" aria-hidden="true">◐</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+
+        <ul
+          id="theme-dropdown-menu"
+          role="menu"
+          aria-label={t('theme.picker.label')}
+          class="theme-menu"
+          hidden
+        >
+          <li role="none">
+            <button role="menuitem" data-theme-btn="sleek" class="theme-menu-item" type="button">
+              ◐ {t('theme.sleek.label')}
+            </button>
+          </li>
+          <li role="none">
+            <button role="menuitem" data-theme-btn="neo-brutalism" class="theme-menu-item" type="button">
+              ■ {t('theme.neo-brutalism.label')}
+            </button>
+          </li>
+          <li role="none">
+            <button role="menuitem" data-theme-btn="high-contrast" class="theme-menu-item" type="button">
+              ◉ {t('theme.high-contrast.label')}
+            </button>
+          </li>
+        </ul>
+      </div>
 
       <button
         id="menu-btn"
@@ -163,6 +202,55 @@ const sections = [
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !menu?.hidden) closeMenu();
   });
+
+  const themeBtn    = document.getElementById('theme-toggle-btn') as HTMLButtonElement | null;
+  const themeMenu   = document.getElementById('theme-dropdown-menu') as HTMLElement | null;
+  const currentIcon = document.getElementById('theme-current-icon') as HTMLElement | null;
+
+  const themeIcons: Record<string, string> = {
+    'sleek':          '◐',
+    'neo-brutalism':  '■',
+    'high-contrast':  '◉',
+  };
+
+  function openThemeMenu() {
+    if (!themeMenu || !themeBtn) return;
+    themeMenu.hidden = false;
+    themeBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeThemeMenu() {
+    if (!themeMenu || !themeBtn) return;
+    themeMenu.hidden = true;
+    themeBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  themeBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themeMenu?.hidden ? openThemeMenu() : closeThemeMenu();
+  });
+
+  document.addEventListener('click', () => closeThemeMenu());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeThemeMenu();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.themeBtn ?? 'sleek';
+      (window as any).setTheme?.(theme);
+      if (currentIcon) currentIcon.textContent = themeIcons[theme] ?? '◐';
+      document.querySelectorAll('[data-theme-btn]').forEach(b => {
+        b.setAttribute('aria-checked', String(b === btn));
+      });
+      closeThemeMenu();
+    });
+  });
+
+  const savedTheme = localStorage.getItem('cv-theme') ?? 'sleek';
+  if (currentIcon) currentIcon.textContent = themeIcons[savedTheme] ?? '◐';
+  document.querySelector(`[data-theme-btn="${savedTheme}"]`)
+    ?.setAttribute('aria-checked', 'true');
 </script>
 
 <style>
@@ -365,5 +453,71 @@ const sections = [
 
   @media print {
     .nav-header { display: none !important; }
+  }
+
+  .theme-dropdown {
+    position: relative;
+  }
+
+  .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 5px 10px;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: color 150ms, border-color 150ms;
+    white-space: nowrap;
+  }
+
+  .theme-toggle-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+  }
+
+  .theme-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    min-width: 160px;
+    background: var(--bg-elevated);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-hover);
+    padding: 4px;
+    z-index: 200;
+    list-style: none;
+    margin: 0;
+  }
+
+  .theme-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: calc(var(--radius) - 4px);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background 150ms, color 150ms;
+  }
+
+  .theme-menu-item:hover {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+  }
+
+  .theme-menu-item[aria-checked="true"] {
+    color: var(--accent-from);
   }
 </style>
