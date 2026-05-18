@@ -24,8 +24,9 @@ const t = useTranslations(lang);
 
 const segments = Astro.url.pathname.split('/').filter(Boolean);
 const hasLangPrefix = segments.length > 0 && segments[0] in ui;
+const rest = segments.slice(1).join('/');
 const currentPath = hasLangPrefix
-  ? '/' + segments.slice(1).join('/') + (Astro.url.pathname.endsWith('/') ? '/' : '')
+  ? (rest ? `/${rest}` : '/')
   : Astro.url.pathname;
 ---
 
