@@ -5,6 +5,7 @@ import '../styles/global.css';
 import '../styles/tokens.css';
 import ThemeOrchestrator from '../components/ThemeOrchestrator.astro';
 import LanguagePicker    from '../components/LanguagePicker.astro';
+import NavMenu           from '../components/NavMenu.astro';
 import { ui, defaultLang, type Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
 
@@ -48,10 +49,7 @@ const currentPath = hasLangPrefix
       {t('skip.link')}
     </a>
 
-    <header style="position: sticky; top: 0; z-index: 100; padding: 12px 24px; display: flex; align-items: center; justify-content: flex-end; gap: 20px; border-bottom: var(--border-width) solid var(--border); background: var(--bg-base);">
-      <LanguagePicker currentLang={lang} currentPath={currentPath} />
-      <ThemeOrchestrator label={t('theme.picker.label')} lang={lang} />
-    </header>
+    <NavMenu lang={lang} currentPath={currentPath} />
 
     <main id="main-content">
       <slot />
