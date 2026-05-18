@@ -71,7 +71,8 @@ const sections = [
           aria-label={t('theme.picker.label')}
           class="theme-toggle-btn"
         >
-          <span id="theme-current-icon" aria-hidden="true">◐</span>
+          <span id="theme-current-icon" aria-hidden="true">◑</span>
+          <span class="theme-toggle-label">{t('nav.theme')}</span>
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <polyline points="6 9 12 15 18 9"/>
@@ -540,5 +541,11 @@ const sections = [
     font-family: var(--font-mono);
     font-weight: 700;
     line-height: 1.8;
+  }
+
+  .theme-toggle-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
   }
 </style>
