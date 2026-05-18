@@ -210,13 +210,15 @@ const githubProfile  = `https://github.com/${githubUsername}`;
                 <p class="font-mono text-[10px] text-neutral-400 mt-0.5">{entry.data.location}</p>
               </header>
               <p class="border-l-2 border-neutral-200 pl-3 text-xs italic text-neutral-500 leading-relaxed my-2">{entry.data.highlight}</p>
-              <ul class="list-none flex flex-col gap-1.5 pl-0">
-                {entry.data.achievements.map(achievement => (
-                  <li class="text-[11px] leading-snug text-neutral-600 before:content-['▸'] before:text-neutral-300 before:mr-1.5">
-                    <span set:html={highlightKeywords(achievement, keywordsToHighlight)} />
-                  </li>
-                ))}
-              </ul>
+              {entry.data.achievements.length > 0 && (
+                <ul class="list-none flex flex-col gap-1.5 pl-0">
+                  {entry.data.achievements.map(achievement => (
+                    <li class="text-[11px] leading-snug text-neutral-600 before:content-['▸'] before:text-neutral-300 before:mr-1.5">
+                      <span set:html={highlightKeywords(achievement, keywordsToHighlight)} />
+                    </li>
+                  ))}
+                </ul>
+              )}
               <div class="flex flex-wrap gap-1.5 mt-1.5">
                 {entry.data.stack.map(item => (
                   <span class="font-mono text-[10px] border border-neutral-200 bg-white px-1.5 py-0.5 rounded text-neutral-500">{item}</span>

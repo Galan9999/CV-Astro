@@ -2,11 +2,8 @@
   "company": "Sentio",
   "role": "Full Stack Developer",
   "period": "2022 - 2023",
-  "location": "Proyecto personal (Freelance)",
-  "highlight": "Arquitectura Full Stack bajo principios SOLID con pipeline CI/CD automatizado y accesibilidad WCAG auditada.",
-  "achievements": [
-    "Stack completo React + Redux + TypeScript en frontend y Express + JWT en backend, con cobertura de tests unitarios (Jest) e integración (Supertest) en cada capa.",
-    "Pipeline CI/CD con GitHub Actions → Netlify, análisis estático con SonarCloud y hooks pre-commit con Husky; accesibilidad auditada con Pa11y siguiendo pautas WCAG."
-  ],
-  "stack": ["React", "TypeScript", "Redux", "Express", "Jest", "GitHub Actions", "Pa11y"]
+  "location": "Proyecto personal",
+  "highlight": "Stack completo React + Redux + TypeScript / Express + JWT con pipeline CI/CD (GitHub Actions → Netlify), análisis estático SonarCloud y accesibilidad auditada con Pa11y.",
+  "achievements": [],
+  "stack": ["React", "TypeScript", "Redux", "Express", "JWT", "Jest", "GitHub Actions", "Pa11y"]
 }
