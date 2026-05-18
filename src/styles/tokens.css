@@ -15,10 +15,10 @@
 
   --accent-from:    #d664be;
   --accent-to:      #df99f0;
-  --glow-accent:    rgba(163, 0, 21, 0.45);
+  --glow-accent:    rgba(214, 100, 190, 0.35);
 
-  --shadow:         none;
-  --shadow-hover:   none;
+  --shadow:         0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-hover:   0 4px 16px rgba(0, 0, 0, 0.5);
   --radius:         12px;
 
   --focus-ring:     2px solid #6366f1;
@@ -44,7 +44,6 @@
 
   --accent-from:    #000000;
   --accent-to:      #000000;
-  --on-accent:      #ffffff;
 
   --glow-accent:    transparent;
 
