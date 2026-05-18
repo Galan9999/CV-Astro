@@ -1,0 +1,262 @@
+---
+import '@fontsource/geist-sans';
+import '@fontsource/geist-mono';
+import { getCollection } from 'astro:content';
+import cvData from '@data/cv.json';
+import { languages } from '../../i18n/ui';
+import { getLangFromUrl } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map(lang => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+
+const experienceEntries = await getCollection('experience',
+  ({ id }) => id.startsWith(`${lang}/`)
+);
+const { meta } = cvData;
+
+const summary = "Full Stack Developer con foco en Frontend de alto rendimiento. Especializado en arquitecturas React escalables, sistemas de autorización CASL/RBAC, Design Tokens y flujos AI-Driven. Orientado a producto, con criterio técnico propio.";
+
+const languages_list = [
+  { lang: "Castellano", level: "Nativo",  pct: 100 },
+  { lang: "Inglés",     level: "C1",      pct: 85  },
+  { lang: "Francés",    level: "B2",      pct: 65  },
+];
+
+const education = [
+  { institution: "Ironhack", degree: "Full Stack Web Development Bootcamp", year: "2020" }
+];
+
+const skillsMatrix: Record<string, string[]> = {
+  "Frontend":        ["React 18", "TypeScript 5", "Astro", "Tailwind CSS", "Redux / Zustand"],
+  "Backend & Infra": ["Node.js", "AWS S3", "REST APIs", "PostgreSQL"],
+  "Calidad":         ["Vitest", "Cypress", "Jest", "WCAG 2.1 AA"],
+  "Workflow":        ["Design Tokens", "CASL / RBAC", "AI Tooling", "Figma", "Git"],
+};
+
+const keywordsToHighlight = ["CASL", "Design Tokens", "AWS", "Page Builder", "SOLID", "Jest", "Figma", "Core Web Vitals", "AI-Driven"];
+
+function highlightKeywords(text: string, keywords: string[]): string {
+  let result = text;
+  for (const kw of keywords) {
+    result = result.replace(
+      new RegExp(`(${kw})`, 'gi'),
+      '<strong class="font-semibold text-neutral-900">$1</strong>'
+    );
+  }
+  return result;
+}
+
+const githubUsername = meta.github.split('/')[3];
+const githubProfile  = `https://github.com/${githubUsername}`;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>{meta.name} — CV</title>
+</head>
+<body class="bg-neutral-100 print:bg-white font-sans">
+
+  <div class="fixed top-5 right-5 z-50 print:hidden">
+    <button
+      onclick="window.print()"
+      type="button"
+      aria-label="Descargar CV como PDF"
+      class="flex items-center gap-2 bg-neutral-900 hover:bg-neutral-700 text-white text-xs font-mono px-4 py-2.5 rounded-lg shadow-lg transition-colors cursor-pointer"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Descargar PDF
+    </button>
+  </div>
+
+  <div id="cv-root" class="w-[210mm] min-h-[297mm] mx-auto grid grid-cols-3 shadow-2xl print:shadow-none bg-white overflow-hidden">
+
+    <aside
+      class="col-span-1 bg-neutral-50 border-r border-neutral-100 p-5 min-w-0"
+      aria-label="Contacto, habilidades, idiomas y educación"
+    >
+
+      <section aria-label="Identificación">
+        <img
+          src="/images/profile.jpg"
+          alt="Carles Galán Bertran"
+          width="80"
+          height="80"
+          class="rounded-xl object-cover w-20 h-20 mb-4 grayscale"
+        />
+        <p class="text-base font-bold text-neutral-900 leading-tight">{meta.name}</p>
+        <p class="text-xs text-neutral-500 mt-0.5">{meta.role}</p>
+      </section>
+
+      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Contacto">
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Contacto</h2>
+        <div class="flex flex-col gap-2.5">
+          <a
+            href={`mailto:${meta.email}`}
+            class="flex items-center gap-2 text-xs text-neutral-600 hover:text-neutral-900 transition-colors"
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            <span>{meta.email}</span>
+          </a>
+          <a
+            href={`https://${meta.linkedin}`}
+            class="flex items-center gap-2 text-xs text-neutral-600 hover:text-neutral-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect width="4" height="12" x="2" y="9"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            <span class="truncate">{meta.linkedin}</span>
+          </a>
+          <a
+            href={githubProfile}
+            class="flex items-center gap-2 text-xs text-neutral-600 hover:text-neutral-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+              <path d="M9 18c-4.51 2-5-2-7-2"/>
+            </svg>
+            <span>github.com/{githubUsername}</span>
+          </a>
+          <div class="flex items-center gap-2 text-xs text-neutral-600">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>{meta.location}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Habilidades técnicas">
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Habilidades</h2>
+        <div class="flex flex-col gap-4">
+          {Object.entries(skillsMatrix).map(([category, skills]) => (
+            <div>
+              <p class="text-[10px] font-semibold text-neutral-500 mb-1.5">{category}</p>
+              <div class="flex flex-wrap gap-1">
+                {skills.map(skill => (
+                  <span class="font-mono text-[10px] bg-white border border-neutral-200 text-neutral-600 px-1.5 py-0.5 rounded">{skill}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Idiomas">
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Idiomas</h2>
+        <div class="flex flex-col gap-3">
+          {languages_list.map(l => (
+            <div>
+              <div class="flex justify-between items-baseline mb-1">
+                <span class="text-xs text-neutral-700">{l.lang}</span>
+                <span class="font-mono text-[10px] text-neutral-400">{l.level}</span>
+              </div>
+              <div class="h-1 bg-neutral-200 rounded-full w-full">
+                <div class="h-1 bg-neutral-400 rounded-full" style={`width: ${l.pct}%`} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Educación">
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">Educación</h2>
+        <div class="flex flex-col gap-3">
+          {education.map(e => (
+            <div>
+              <p class="text-xs font-semibold text-neutral-800">{e.institution}</p>
+              <p class="text-[10px] text-neutral-500 leading-relaxed mt-0.5">{e.degree}</p>
+              <p class="font-mono text-[10px] text-neutral-400 mt-0.5">{e.year}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </aside>
+
+    <main class="col-span-2 p-6 space-y-5" aria-label="Perfil profesional y experiencia">
+
+      <section aria-label="Perfil">
+        <h1 class="text-2xl font-bold tracking-tight text-neutral-900 leading-tight">{meta.name}</h1>
+        <p class="text-xs uppercase tracking-[0.15em] text-neutral-400 mt-1">{meta.role}</p>
+        <div class="w-8 h-0.5 bg-neutral-900 mt-1 mb-4" role="presentation" />
+        <p class="text-xs leading-relaxed text-neutral-600">{summary}</p>
+      </section>
+
+      <section aria-label="Experiencia profesional">
+        <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-5">Experiencia</h2>
+        <div class="flex flex-col">
+          {experienceEntries.map(entry => (
+            <article class="experience-block space-y-3 pt-3 mt-3 border-t border-neutral-100 first:border-t-0 first:pt-0 first:mt-0">
+              <header>
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 class="text-sm font-bold text-neutral-900">{entry.data.company}</h3>
+                    <p class="text-xs text-neutral-500 mt-0.5">{entry.data.role}</p>
+                  </div>
+                  <time class="font-mono text-[10px] text-neutral-400 flex-shrink-0 pt-0.5">{entry.data.period}</time>
+                </div>
+                <p class="font-mono text-[10px] text-neutral-400 mt-0.5">{entry.data.location}</p>
+              </header>
+              <p class="border-l-2 border-neutral-200 pl-3 text-xs italic text-neutral-500 leading-relaxed my-2">{entry.data.highlight}</p>
+              {entry.data.achievements.length > 0 && (
+                <ul class="list-none flex flex-col gap-1.5 pl-0">
+                  {entry.data.achievements.map(achievement => (
+                    <li class="text-[11px] leading-snug text-neutral-600 before:content-['▸'] before:text-neutral-300 before:mr-1.5">
+                      <span set:html={highlightKeywords(achievement, keywordsToHighlight)} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                {entry.data.stack.map(item => (
+                  <span class="font-mono text-[10px] border border-neutral-200 bg-white px-1.5 py-0.5 rounded text-neutral-500">{item}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
+
+<style is:global>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+    body > *:not(#cv-root) { display: none !important; }
+    body { background: white !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .experience-block { break-inside: avoid; page-break-inside: avoid; }
+    aside { background-color: #fafafa !important; }
+  }
+</style>
