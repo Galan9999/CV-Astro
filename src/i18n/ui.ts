@@ -123,6 +123,7 @@ export const ui = {
     'nav.proceso':    'IA',
     'nav.about':      'About',
     'nav.git':        'Git',
+    'nav.theme':      'Tema',
   },
   en: {
     'hero.role':        'Full Stack Engineer | AI Workflow Specialist',
@@ -238,6 +239,7 @@ export const ui = {
     'nav.proceso':    'AI',
     'nav.about':      'About',
     'nav.git':        'Git',
+    'nav.theme':      'Theme',
   },
   fr: {
     'hero.role':        'Ingénieur Full Stack | Spécialiste des flux IA',
@@ -353,6 +355,7 @@ export const ui = {
     'nav.proceso':    'IA',
     'nav.about':      'About',
     'nav.git':        'Git',
+    'nav.theme':      'Thème',
   },
   ca: {
     'hero.role':        'Enginyer Full Stack | Especialista en IA',
@@ -468,6 +471,7 @@ export const ui = {
     'nav.proceso':    'IA',
     'nav.about':      'About',
     'nav.git':        'Git',
+    'nav.theme':      'Tema',
   },
 } as const;
 
