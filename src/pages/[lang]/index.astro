@@ -23,7 +23,9 @@ const lang = getLangFromUrl(Astro.url);
 const t    = useTranslations(lang);
 
 const { meta, stack } = cvData;
-const experienceEntries = await getCollection('experience');
+const experienceEntries = await getCollection('experience',
+  ({ id }) => id.startsWith(`${lang}/`)
+);
 const currentYear     = new Date().getFullYear();
 ---
 
