@@ -7,12 +7,13 @@ const { lang = defaultLang } = Astro.props
 const t = useTranslations(lang)
 ---
 
-<button
-  onclick="window.print()"
+<a
+  href="/cv-print"
+  target="_blank"
+  rel="noopener noreferrer"
   data-no-print
   aria-label={t('print.label')}
   class="print-btn"
-  type="button"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +32,7 @@ const t = useTranslations(lang)
     <rect x="6" y="14" width="12" height="8"/>
   </svg>
   {t('print.cta')}
-</button>
+</a>
 
 <style>
   .print-btn {
