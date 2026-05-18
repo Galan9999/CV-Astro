@@ -49,5 +49,40 @@
     { "skill": "Astro / SSG architecture",       "mastery": 78, "category": "frontend"  },
     { "skill": "Testing Vitest / Cypress",       "mastery": 75, "category": "craft"     },
     { "skill": "Design Systems / Tokens",        "mastery": 80, "category": "craft"     }
-  ]
+  ],
+  "education_extended": {
+    "tech": {
+      "institution": "Ironhack",
+      "degree": "Full Stack Web Development Bootcamp",
+      "year": "2020"
+    },
+    "university": {
+      "institution": "Universitat",
+      "degree": "Grado en Economía — Créditos Avanzados (Pendiente de finalización)",
+      "focus": "Análisis macro/microeconómico orientado a viabilidad de modelos de negocio y optimización de recursos",
+      "year": "Formación Híbrida Tech-Business"
+    }
+  },
+  "personal_projects": [
+    {
+      "name": "Sentio",
+      "description": "Ecosistema Full Stack modular. Arquitectura bajo principios SOLID, seguridad JWT, análisis estático con SonarCloud y auditoría de accesibilidad con Pa11y. Orquestado con CI/CD (GitHub Actions).",
+      "stack": ["React", "TypeScript", "Redux", "Express", "SonarCloud", "Pa11y", "GitHub Actions"]
+    }
+  ],
+  "community": {
+    "location": "Barcelona",
+    "topics": [
+      "Optimización de rendimiento frontend y Core Web Vitals",
+      "Arquitecturas escalables en el ecosistema JavaScript/TypeScript",
+      "Flujos de desarrollo modernos asistidos por IA (AI DX)"
+    ]
+  },
+  "advanced_reading": {
+    "pillars": [
+      "Ciencia de la Complejidad y Sistemas Dinámicos Complejos",
+      "Teoría de Redes y Computación Avanzada",
+      "Modelado conceptual y abstracción arquitectónica"
+    ]
+  }
 }
