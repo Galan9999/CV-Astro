@@ -21,6 +21,7 @@ const experience = defineCollection({
     highlight:    z.string(),
     achievements: z.array(z.string()),
     stack:        z.array(z.string()),
+    featured:     z.boolean().optional(),
   }),
 });
 

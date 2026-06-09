@@ -1,5 +1,6 @@
 ---
 import { type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
   company:      string
@@ -9,16 +10,23 @@ interface Props {
   highlight:    string
   achievements: string[]
   stack:        string[]
+  featured?:    boolean
   lang?:        Lang
 }
 
-const { company, role, period, location, highlight, achievements, stack } = Astro.props;
+const { company, role, period, location, highlight, achievements, stack, featured = false, lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<article class="exp-card">
+<article class:list={['exp-card', { 'exp-card--featured': featured }]}>
   <header class="card-header">
     <div class="card-meta">
-      <h3 class="company-name">{company}</h3>
+      <div class="company-row">
+        <h3 class="company-name">{company}</h3>
+        {featured && (
+          <span class="featured-badge">{t('experience.featured.badge')}</span>
+        )}
+      </div>
       <p class="role">{role}</p>
       <p class="location">{location}</p>
     </div>
@@ -57,6 +65,36 @@ const { company, role, period, location, highlight, achievements, stack } = Astr
   .exp-card:hover {
     border-color: var(--border-hover);
     box-shadow: var(--shadow-hover);
+  }
+
+  .exp-card--featured {
+    border-color: var(--accent-from);
+    box-shadow: var(--shadow), 0 0 0 1px color-mix(in srgb, var(--accent-from) 25%, transparent);
+    background: color-mix(in srgb, var(--accent-from) 4%, var(--bg-surface));
+  }
+
+  .exp-card--featured:hover {
+    border-color: var(--accent-to);
+    box-shadow: var(--shadow-hover), 0 0 12px color-mix(in srgb, var(--accent-from) 20%, transparent);
+  }
+
+  .company-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .featured-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.125rem 0.5rem;
+    border-radius: calc(var(--radius) / 2);
+    color: var(--on-accent);
+    background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
   }
 
   .exp-card:hover .company-name {
@@ -140,7 +178,6 @@ const { company, role, period, location, highlight, achievements, stack } = Astr
     line-height: 1.6;
   }
 
-  /* Neo-brutalism: square bullet */
   [data-theme="neo-brutalism"] .exp-card .achievements li::before {
     content: '■';
     font-size: 0.5rem;
@@ -148,7 +185,6 @@ const { company, role, period, location, highlight, achievements, stack } = Astr
     line-height: 1;
   }
 
-  /* ── Print ─────────────────────────────────────────────── */
   @media print {
     .exp-card {
       border: 0.5pt solid #ccc !important;

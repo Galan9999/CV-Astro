@@ -23,9 +23,13 @@ const lang = getLangFromUrl(Astro.url);
 const t    = useTranslations(lang);
 
 const { meta, stack } = cvData;
-const experienceEntries = await getCollection('experience',
+const experienceEntries = (await getCollection('experience',
   ({ id }) => id.startsWith(`${lang}/`)
-);
+)).sort((a, b) => {
+  const aFeatured = a.data.featured ? 0 : 1;
+  const bFeatured = b.data.featured ? 0 : 1;
+  return aFeatured - bFeatured || a.id.localeCompare(b.id);
+});
 const currentYear     = new Date().getFullYear();
 ---
 
@@ -73,6 +77,7 @@ const currentYear     = new Date().getFullYear();
             highlight={entry.data.highlight}
             achievements={entry.data.achievements}
             stack={entry.data.stack}
+            featured={entry.data.featured}
             lang={lang}
           />
         ))}

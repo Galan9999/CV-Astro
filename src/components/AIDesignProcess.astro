@@ -77,6 +77,28 @@ const steps = [
   </div>
 
   <div
+    style="border: var(--border-width) solid var(--border); border-radius: var(--radius); padding: 1.5rem; background: var(--bg-surface); margin-bottom: 2.5rem;"
+  >
+    <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">
+      {t('ai.sdd.heading')}
+    </h3>
+    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+      {t('ai.sdd.intro')}
+    </p>
+    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+      {[t('ai.sdd.p1'), t('ai.sdd.p2'), t('ai.sdd.p3')].map(item => (
+        <li style="display: flex; gap: 0.5rem; font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+          <span style="color: var(--accent-from); flex-shrink: 0;" aria-hidden="true">→</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+    <p style="font-size: 13px; color: var(--text-secondary); font-family: var(--font-mono); line-height: 1.6; margin: 1rem 0 0;">
+      {t('ai.sdd.p4')}
+    </p>
+  </div>
+
+  <div
     style="border: var(--border-width) solid var(--border); border-radius: var(--radius); padding: 1.5rem; background: var(--bg-surface); margin-bottom: 1.5rem;"
   >
     <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">
