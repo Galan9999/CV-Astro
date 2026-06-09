@@ -169,8 +169,8 @@ const sections = [
 <script>
   const btn   = document.getElementById('menu-btn') as HTMLButtonElement | null;
   const menu  = document.getElementById('mobile-menu') as HTMLElement | null;
-  const iconO = document.getElementById('icon-open')  as SVGElement | null;
-  const iconC = document.getElementById('icon-close') as SVGElement | null;
+  const iconO = document.getElementById('icon-open')  as HTMLElement | null;
+  const iconC = document.getElementById('icon-close') as HTMLElement | null;
 
   function openMenu() {
     if (!menu || !btn) return;
