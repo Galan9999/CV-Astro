@@ -6,6 +6,34 @@ interface Props { lang?: Lang }
 const { lang = defaultLang } = Astro.props
 const t = useTranslations(lang)
 
+const q = (s: string) => s.replace(/"/g, '#quot;')
+
+const diagram = [
+  'flowchart TD',
+  `  subgraph s1["${q(t('ai.flow.subgraph1'))}"]`,
+  `    spec["${q(t('ai.flow.node.spec'))}"]`,
+  `    ticket["${q(t('ai.flow.node.ticket'))}"]`,
+  '    spec --> ticket',
+  '  end',
+  `  subgraph s2["${q(t('ai.flow.subgraph2'))}"]`,
+  `    ctx["${q(t('ai.flow.node.context'))}"]`,
+  `    layers["${q(t('ai.flow.node.context.detail'))}"]`,
+  '    ctx --> layers',
+  '  end',
+  `  subgraph s3["${q(t('ai.flow.subgraph3'))}"]`,
+  `    exec["${q(t('ai.flow.node.execute'))}"]`,
+  `    review["${q(t('ai.flow.node.review'))}"]`,
+  `    sync["${q(t('ai.flow.node.sync'))}"]`,
+  '    exec --> review --> sync',
+  '  end',
+  '  ticket --> ctx',
+  '  layers --> exec',
+  `  sync -->|"${q(t('ai.flow.cycle'))}"| ticket`,
+].join('\n')
+
+const flowId     = `ai-flow-${lang}`
+const containerId = `mermaid-${lang}`
+
 const steps = [
   {
     tool:   t('ai.step1.tool'),
@@ -45,6 +73,18 @@ const steps = [
     <h3 style="font-size: 1rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">
       {t('ai.workflow.heading')}
     </h3>
+
+    <figure
+      class="mermaid-flow-wrap"
+      style="border: var(--border-width) solid var(--border); border-radius: var(--radius); background: var(--bg-surface); padding: 1rem; margin-bottom: 1.5rem; overflow-x: auto;"
+    >
+      <div
+        id={containerId}
+        class="mermaid-flow"
+        aria-label={t('ai.flow.aria')}
+        role="img"
+      />
+    </figure>
 
     <ol style="list-style: none; padding: 0; margin: 0;">
       {steps.map((s, i) => (
@@ -116,3 +156,34 @@ const steps = [
     {t('ai.handoff.p3')}
   </p>
 </section>
+
+<script define:vars={{ diagram, flowId, containerId }}>
+  import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')
+    .then(({ default: mermaid }) => {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'neutral',
+        securityLevel: 'loose',
+        flowchart: { curve: 'basis', htmlLabels: true },
+      })
+      return mermaid.render(flowId, diagram)
+    })
+    .then(({ svg }) => {
+      const el = document.getElementById(containerId)
+      if (el) el.innerHTML = svg
+    })
+    .catch(() => {})
+</script>
+
+<style>
+  .mermaid-flow-wrap :global(svg) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  @media print {
+    .mermaid-flow-wrap { break-inside: avoid; }
+  }
+</style>
