@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Carles Galán Bertran",
-    "role": "Agentic Engineer · SDD · Full Stack",
+    "role": "SDD · Agentic Engineer · Full Stack",
     "location": "Remote",
     "email": "galan.carles@gmail.com",
     "github": "https://github.com/Galan9999/CV-Astro",
@@ -75,7 +75,7 @@
     "topics": [
       "Optimización de rendimiento frontend y Core Web Vitals",
       "Arquitecturas escalables en el ecosistema JavaScript/TypeScript",
-      "Flujos de desarrollo modernos asistidos por IA (AI DX)"
+      "Spec-Driven Development y flujos agentic (SDD · AI DX)"
     ]
   },
   "advanced_reading": {

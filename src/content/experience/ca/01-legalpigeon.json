@@ -4,12 +4,12 @@
   "role": "Full Stack Developer",
   "period": "Jun. 2024 - Actualitat",
   "location": "Barcelona, Espanya (Híbrid)",
-  "highlight": "Lideratge tècnic en la modernització del Frontend mitjançant sistemes de disseny agnòstics, robustesa en seguretat amb control d'accés centralitzat, Spec-Driven Development i optimització de fluxos amb IA (Platform Engineering).",
+  "highlight": "Spec-Driven Development (SDD) i lideratge tècnic en modernització Frontend: sistemes de disseny agnòstics, seguretat CASL/RBAC i fluxos agentic (Platform Engineering).",
   "achievements": [
+    "Disseny i implementació de Spec-Driven Development (SDD): specs de domini a src/domains/, capes de coneixement per a agents (.claude/skills, .cursor/rules) i cicle de tickets tipats amb sync Notion via MCP.",
     "Implementació i centralització del sistema d'autorització basat en habilitats utilitzant CASL al backend, eliminant la duplicació de codi de permisos i blindant la seguretat de la plataforma.",
     "Arquitectura i migració del frontend cap a una estructura de Design Tokens agnòstics i tokens de component, agilitzant dràsticament el desenvolupament d'interfícies i la consistència visual.",
-    "Establiment d'un flux d'AI-Driven Development, dissenyant mòduls conceptuals (Gems) per a la governança de l'arquitectura i utilitzant agents (Claude) per a l'extracció automàtica de disseny, generació de components i documentació cloud (AWS/S3).",
-    "Disseny i implementació de Spec-Driven Development (SDD): specs de domini a src/domains/, capes de coneixement per a agents (.claude/skills, .cursor/rules) i cicle de tickets tipats amb sync Notion via MCP."
+    "Establiment d'un flux d'AI-Driven Development, dissenyant mòduls conceptuals (Gems) per a la governança de l'arquitectura i utilitzant agents (Claude) per a l'extracció automàtica de disseny, generació de components i documentació cloud (AWS/S3)."
   ],
-  "stack": ["AWS (S3)", "CASL", "Node.js", "Design Tokens", "TypeScript", "AI Tooling (Claude/Gems)", "Spec-Driven Development"]
+  "stack": ["Spec-Driven Development", "AWS (S3)", "CASL", "Node.js", "Design Tokens", "TypeScript", "AI Tooling (Claude/Gems)"]
 }

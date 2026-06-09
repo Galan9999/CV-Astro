@@ -6,8 +6,8 @@
       "company": "Legal Pigeon",
       "role": "Full Stack Engineer — Front-End Lead",
       "period": "2023 – presente",
-      "description": "Responsable del ecosistema Front-End: migración a React 18, arquitectura de estados complejos con Redux Toolkit + Zustand, y sistema RBAC con 180+ checks vía CASL. Lazy loading sobre 70+ rutas.",
-      "stack": ["React 18", "TypeScript", "Redux Toolkit", "CASL", "Vitest"]
+      "description": "SDD con specs de dominio y flujos agentic. Responsable del ecosistema Front-End: migración a React 18, arquitectura de estados complejos con Redux Toolkit + Zustand, y sistema RBAC con 180+ checks vía CASL. Lazy loading sobre 70+ rutas.",
+      "stack": ["Spec-Driven Development", "React 18", "TypeScript", "Redux Toolkit", "CASL", "Vitest"]
     },
     {
       "id": "frontera",

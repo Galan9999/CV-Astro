@@ -22,7 +22,7 @@ const experienceEntries = (await getCollection('experience',
 });
 const { meta, education_extended, personal_projects: personalProjects } = cvData;
 
-const summary = "Full Stack Developer con foco en Frontend de alto rendimiento. Especializado en arquitecturas React escalables, sistemas de autorización CASL/RBAC, Design Tokens y flujos AI-Driven. Orientado a producto, con criterio técnico propio.";
+const summary = "Full Stack Developer con foco en Frontend de alto rendimiento. Especializado en Spec-Driven Development (SDD), arquitecturas React escalables, sistemas CASL/RBAC y Design Tokens. Orientado a producto, con criterio técnico propio.";
 
 const languages_list: Array<{ labelKey: UiKey; levelKey: UiKey; pct: number }> = [
   { labelKey: 'lang.es',  levelKey: 'lang.level.native',    pct: 100 },
@@ -34,7 +34,7 @@ const languages_list: Array<{ labelKey: UiKey; levelKey: UiKey; pct: number }> =
 const skillsMatrix: Record<string, string[]> = {
   "Frontend":        ["React 18", "TypeScript 5", "Astro", "Tailwind CSS", "Redux / Zustand"],
   "Backend & Infra": ["Node.js", "AWS S3", "REST APIs"],
-  "Workflow":        ["Design Tokens", "CASL / RBAC", "AI Tooling", "Figma", "Git"],
+  "Workflow":        ["Spec-Driven Development", "Design Tokens", "CASL / RBAC", "AI Tooling", "Figma", "Git"],
 };
 
 const education = [
@@ -45,7 +45,7 @@ const education = [
 const communityTopics = [t('community.topic1'), t('community.topic2'), t('community.topic3')];
 const advancedReadingPillars = [t('reading.pillar1'), t('reading.pillar2'), t('reading.pillar3')];
 
-const keywordsToHighlight = ["CASL", "Design Tokens", "AWS", "Page Builder", "SOLID", "Jest", "Figma", "Core Web Vitals", "AI-Driven", "SonarCloud", "Pa11y", "JWT"];
+const keywordsToHighlight = ["SDD", "CASL", "Design Tokens", "AWS", "Page Builder", "SOLID", "Jest", "Figma", "Core Web Vitals", "SonarCloud", "Pa11y", "JWT"];
 
 function highlightKeywords(text: string, keywords: string[]): string {
   let result = text;
