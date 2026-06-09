@@ -34,9 +34,9 @@
     "deploy":      "Static SSG — zero JS by default",
     "repo":        "https://github.com/Galan9999/CV-Astro",
     "ai_workflow": [
-      "Gemini 1.5 Pro — strategy + content architecture",
-      "Claude 3.5 Sonnet — code audit + a11y review",
-      "Claude CLI — scaffolding + component generation"
+      "ticket-flow — domain spec + typed ticket before code",
+      "AGENTS.md + skills — shared human-agent context layers",
+      "Claude Code — spec-guided execution, grill-me and Notion sync"
     ]
   },
   "skills_radar": [

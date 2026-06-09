@@ -8,19 +8,19 @@ const t = useTranslations(lang)
 
 const steps = [
   {
-    tool:   'Gemini 1.5 Pro',
+    tool:   t('ai.step1.tool'),
     role:   t('ai.step1.role'),
     detail: t('ai.step1.detail'),
     accent: 'var(--accent-from)',
   },
   {
-    tool:   'Claude 3.5 Sonnet',
+    tool:   t('ai.step2.tool'),
     role:   t('ai.step2.role'),
     detail: t('ai.step2.detail'),
     accent: 'var(--tag-violet)',
   },
   {
-    tool:   'Claude CLI',
+    tool:   t('ai.step3.tool'),
     role:   t('ai.step3.role'),
     detail: t('ai.step3.detail'),
     accent: 'var(--accent-to)',
