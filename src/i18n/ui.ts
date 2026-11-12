@@ -376,7 +376,7 @@ export const ui = {
     'research.card1.title':        'Complexity & Systems',
     'research.card1.text':         'Complexity Science and Dynamic Systems — active reading in network theory, emergent behavior, and computational models. References: Melanie Mitchell, Geoffrey West.',
     'research.card2.title':        'Beyond the tech stack',
-    'research.card2.text':         'Exploration of adjacent domains: macroeconomics, systems biology, and first-principles thinking applied to software architecture. I'm currently following Michael Levin's work on intelligence and cognition in biological systems closely: that's where TameFlow comes from.',
+    'research.card2.text':         "Exploration of adjacent domains: macroeconomics, systems biology, and first-principles thinking applied to software architecture. I'm currently following Michael Levin's work on intelligence and cognition in biological systems closely: that's where TameFlow comes from.",
     'community.intro':             'Regular attendance (~ 1 talk/week) at meetups and events within the Barcelona tech community.',
     'community.item1':             'Frontend performance optimization and Core Web Vitals',
     'community.item2':             'Scalable architectures within the JavaScript/TypeScript ecosystem',
