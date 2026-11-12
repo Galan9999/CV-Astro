@@ -1,3 +1,8 @@
+/* ── Anchor offset under the sticky header ──────────────── */
+html {
+  scroll-padding-top: calc(var(--nav-height, 49px) + 1rem);
+}
+
 /* ── Print ─────────────────────────────────────────────── */
 @media print {
   @page {
