@@ -109,7 +109,7 @@
     {
       "id": "sentio",
       "name": "Sentio",
-      "stack": ["React", "TypeScript", "Redux", "Express", "JWT", "Jest", "GitHub Actions", "Pa11y"],
+      "stack": ["React", "TypeScript", "Redux", "Express", "JWT", "Jest", "GitHub Actions"],
       "links": [
         { "kind": "repo", "label": "front", "url": "https://github.com/Galan9999/Sentio-front" },
         { "kind": "repo", "label": "back", "url": "https://github.com/Galan9999/Sentio-back" }

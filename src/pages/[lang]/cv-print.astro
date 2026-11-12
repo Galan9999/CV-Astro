@@ -42,7 +42,7 @@ const education = [
 const communityTopics = [t('community.topic1'), t('community.topic2'), t('community.topic3')];
 const advancedReadingPillars = [t('reading.pillar1'), t('reading.pillar2'), t('reading.pillar3')];
 
-const keywordsToHighlight = ["SDD", "CASL", "Design Tokens", "AWS", "Page Builder", "SOLID", "Jest", "Figma", "Core Web Vitals", "SonarCloud", "Pa11y", "JWT"];
+const keywordsToHighlight = ["SDD", "CASL", "Design Tokens", "AWS", "Page Builder", "SOLID", "Jest", "Figma", "Core Web Vitals", "SonarCloud", "JWT"];
 
 function highlightKeywords(text: string, keywords: string[]): string {
   let result = text;
@@ -99,13 +99,13 @@ const githubProfile  = `https://github.com/${githubUsername}`;
           alt="Carles Galán Bertran"
           width="80"
           height="80"
-          class="rounded-xl object-cover w-20 h-20 mb-4 grayscale"
+          class="rounded-xl object-cover w-16 h-16 mb-3 grayscale"
         />
         <p class="text-base font-bold text-neutral-900 leading-tight">{meta.name}</p>
         <p class="text-xs text-neutral-500 mt-0.5">{meta.role}</p>
       </section>
 
-      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Contacto">
+      <section class="border-t border-neutral-200 pt-3.5 mt-3.5" aria-label="Contacto">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('contact.section.arialabel').toUpperCase()}</h2>
         <div class="flex flex-col gap-2.5">
           <a
@@ -153,25 +153,25 @@ const githubProfile  = `https://github.com/${githubUsername}`;
         </div>
       </section>
 
-      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Habilidades técnicas">
+      <section class="border-t border-neutral-200 pt-3.5 mt-3.5" aria-label="Habilidades técnicas">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('skills.print.heading').toUpperCase()}</h2>
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2.5">
           {skillsMatrix.map(([category, skills]) => (
             <div>
-              <p class="text-[10px] font-semibold text-neutral-500 mb-1.5">{category}</p>
-              <div class="flex flex-wrap gap-1">
-                {skills.map(skill => (
-                  <span class="font-mono text-[10px] bg-white border border-neutral-200 text-neutral-600 px-1.5 py-0.5 rounded">{skill}</span>
+              <p class="text-[10px] font-semibold text-neutral-500 mb-0.5">{category}</p>
+              <p class="font-mono text-[9.5px] leading-snug text-neutral-600">
+                {skills.map((skill, index) => (
+                  <Fragment><span class="whitespace-nowrap">{skill}</span>{index < skills.length - 1 && ' · '}</Fragment>
                 ))}
-              </div>
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Idiomas">
+      <section class="border-t border-neutral-200 pt-3.5 mt-3.5" aria-label="Idiomas">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('languages.heading').toUpperCase()}</h2>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-2">
           {languages_list.map(l => (
             <div>
               <div class="flex justify-between items-baseline mb-1">
@@ -186,9 +186,9 @@ const githubProfile  = `https://github.com/${githubUsername}`;
         </div>
       </section>
 
-      <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Educación">
+      <section class="border-t border-neutral-200 pt-3.5 mt-3.5" aria-label="Educación">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('education.heading').toUpperCase()}</h2>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-2">
           {education.map(entry => (
             <div>
               <p class="text-xs font-semibold text-neutral-800">{entry.institution}</p>

@@ -3,7 +3,7 @@
   "role": "Full Stack Developer",
   "period": "2022 - 2023",
   "location": "Personal project",
-  "highlight": "Full stack React + Redux + TypeScript / Express + JWT with CI/CD pipeline (GitHub Actions → Netlify), SonarCloud static analysis, and accessibility audited with Pa11y.",
+  "highlight": "Full stack React + Redux + TypeScript / Express + JWT with CI/CD pipeline (GitHub Actions → Netlify), SonarCloud static analysis.",
   "achievements": [],
-  "stack": ["React", "TypeScript", "Redux", "Express", "JWT", "Jest", "GitHub Actions", "Pa11y"]
+  "stack": ["React", "TypeScript", "Redux", "Express", "JWT", "Jest", "GitHub Actions"]
 }
