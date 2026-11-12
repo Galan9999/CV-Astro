@@ -10,6 +10,8 @@ import SkillsRadar      from '@components/SkillsRadar.astro';
 import AboutEvolution   from '@components/AboutEvolution.astro';
 import PrintButton      from '@components/PrintButton.astro';
 import ContactForm      from '@components/ContactForm.astro';
+import ProjectsShowcase from '@components/ProjectsShowcase.astro';
+import ClaudeAudits     from '@components/ClaudeAudits.astro';
 import { getCollection } from 'astro:content';
 import cvData           from '@data/cv.json';
 import { languages } from '../../i18n/ui';
@@ -86,6 +88,8 @@ const currentYear     = new Date().getFullYear();
 
     <div id="proceso"><AIDesignProcess lang={lang} /></div>
 
+    <ClaudeAudits lang={lang} />
+
     <div id="log"><EngineeringLog lang={lang} /></div>
 
     <div id="git"><GitTree lang={lang} /></div>
@@ -94,29 +98,7 @@ const currentYear     = new Date().getFullYear();
       <About lang={lang} />
     </div>
 
-    <section data-no-print class="mb-16" aria-label={t('nav.projects')}>
-      <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
-        <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
-        {t('nav.projects')}
-      </h2>
-
-      <div style="background: var(--bg-surface); border: var(--border-width) solid var(--border); border-radius: 0.5rem; padding: 1.25rem;">
-        <p class="font-semibold mb-1" style="color: var(--text-primary);">Sentio</p>
-        <p class="text-sm mb-3" style="color: var(--text-secondary);">Ecosistema Full Stack modular. Arquitectura bajo principios SOLID, seguridad JWT, análisis estático con SonarCloud y auditoría de accesibilidad con Pa11y. Orquestado con CI/CD (GitHub Actions).</p>
-        <div class="flex flex-wrap gap-1.5">
-          {['React', 'TypeScript', 'Redux', 'Express', 'JWT', 'Jest', 'GitHub Actions', 'Pa11y'].map(badge => (
-            <span class="font-mono text-xs border border-neutral-700 bg-neutral-900 text-neutral-300 px-2 py-0.5 rounded">{badge}</span>
-          ))}
-        </div>
-      </div>
-
-      <p
-        class="text-sm mt-4 font-mono"
-        style="color: var(--text-secondary); border-left: 2px solid var(--border); padding-left: 0.75rem;"
-      >
-        {t('projects.private.note')}
-      </p>
-    </section>
+    <ProjectsShowcase lang={lang} />
 
     <section data-no-print class="mb-16" aria-label={t('research.heading')}>
       <h2 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
@@ -132,6 +114,10 @@ const currentYear     = new Date().getFullYear();
         <div class="rounded-lg p-4 text-sm leading-relaxed flex-1" style="background: var(--bg-surface); border: var(--border-width) solid var(--border); color: var(--text-secondary);">
           <p class="font-semibold mb-2" style="color: var(--text-primary);">{t('research.card2.title')}</p>
           <p>{t('research.card2.text')}</p>
+        </div>
+        <div class="rounded-lg p-4 text-sm leading-relaxed flex-1" style="background: var(--bg-surface); border: var(--border-width) solid var(--accent-from); color: var(--text-secondary);">
+          <p class="font-semibold mb-2" style="color: var(--text-primary);">{t('research.card3.title')}</p>
+          <p>{t('research.card3.text')}</p>
         </div>
       </div>
     </section>

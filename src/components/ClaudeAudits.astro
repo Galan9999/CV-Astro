@@ -1,0 +1,113 @@
+---
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
+const q = (s: string) => s.replace(/"/g, '#quot;');
+
+const diagram = [
+  'flowchart TD',
+  `  subgraph routine["${q(t('audits.flow.subgraph1'))}"]`,
+  `    schedule["${q(t('audits.flow.node.schedule'))}"]`,
+  `    run["${q(t('audits.flow.node.run'))}"]`,
+  `    report["${q(t('audits.flow.node.json'))}"]`,
+  '    schedule --> run --> report',
+  '  end',
+  `  subgraph publish["${q(t('audits.flow.subgraph2'))}"]`,
+  `    page["${q(t('audits.flow.node.page'))}"]`,
+  `    review["${q(t('audits.flow.node.review'))}"]`,
+  `    artifact["${q(t('audits.flow.node.artifact'))}"]`,
+  '    page --> review --> artifact',
+  '  end',
+  `  tickets["${q(t('audits.flow.node.tickets'))}"]`,
+  '  report --> page',
+  '  artifact --> tickets',
+  `  tickets -.->|"${q(t('audits.flow.cycle'))}"| schedule`,
+].join('\n');
+
+const flowId      = `audits-flow-${lang}`;
+const containerId = `audits-mermaid-${lang}`;
+
+const auditTypes = [
+  { title: t('audits.type1.title'), text: t('audits.type1.text') },
+  { title: t('audits.type2.title'), text: t('audits.type2.text') },
+  { title: t('audits.type3.title'), text: t('audits.type3.text') },
+  { title: t('audits.type4.title'), text: t('audits.type4.text') },
+];
+
+const principles = [t('audits.principle1'), t('audits.principle2'), t('audits.principle3')];
+---
+
+<section id="auditorias" class="mb-16" aria-labelledby="audits-heading" style="color: var(--text-primary);">
+  <h2 id="audits-heading" class="text-xl font-semibold mb-3 flex items-center gap-2">
+    <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+    {t('audits.heading')}
+  </h2>
+  <p class="text-sm mb-6" style="color: var(--text-secondary); line-height: 1.7;">{t('audits.intro')}</p>
+
+  <h3 class="text-sm font-semibold mb-3 uppercase" style="color: var(--text-secondary); letter-spacing: 0.1em;">{t('audits.flow.heading')}</h3>
+  <figure
+    class="audits-flow-wrap mb-8"
+    style="border: var(--border-width) solid var(--border); border-radius: var(--radius); background: var(--bg-surface); padding: 1rem; overflow-x: auto;"
+  >
+    <div id={containerId} role="img" aria-label={t('audits.flow.aria')} />
+  </figure>
+
+  <h3 class="text-sm font-semibold mb-3 uppercase" style="color: var(--text-secondary); letter-spacing: 0.1em;">{t('audits.types.heading')}</h3>
+  <ul class="grid gap-3 mb-8 sm:grid-cols-2" role="list">
+    {auditTypes.map(type => (
+      <li style="background: var(--bg-surface); border: var(--border-width) solid var(--border); border-radius: var(--radius); padding: 1rem;">
+        <p class="font-mono text-sm font-semibold mb-1" style="color: var(--accent-from);">{type.title}</p>
+        <p class="text-sm" style="color: var(--text-secondary); line-height: 1.6;">{type.text}</p>
+      </li>
+    ))}
+  </ul>
+
+  <h3 class="text-sm font-semibold mb-3 uppercase" style="color: var(--text-secondary); letter-spacing: 0.1em;">{t('audits.principles.heading')}</h3>
+  <ul class="space-y-2 text-sm mb-4" style="color: var(--text-secondary);">
+    {principles.map(principle => (
+      <li style="position: relative; padding-left: 1.5rem; line-height: 1.6;">
+        <span style="position: absolute; left: 0; color: var(--accent-from);" aria-hidden="true">→</span>
+        {principle}
+      </li>
+    ))}
+  </ul>
+
+  <p class="text-sm font-mono" style="color: var(--text-secondary); border-left: 2px solid var(--border); padding-left: 0.75rem;">
+    {t('audits.note')}
+  </p>
+</section>
+
+<script define:vars={{ diagram, flowId, containerId }}>
+  import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')
+    .then(({ default: mermaid }) => {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'neutral',
+        securityLevel: 'loose',
+        flowchart: { curve: 'basis', htmlLabels: true },
+      })
+      return mermaid.render(flowId, diagram)
+    })
+    .then(({ svg }) => {
+      const el = document.getElementById(containerId)
+      if (el) el.innerHTML = svg
+    })
+    .catch(() => {})
+</script>
+
+<style>
+  .audits-flow-wrap :global(svg) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  @media print {
+    .audits-flow-wrap { break-inside: avoid; }
+  }
+</style>

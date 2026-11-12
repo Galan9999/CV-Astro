@@ -4,7 +4,7 @@
     "role": "SDD · Agentic Engineer · Full Stack",
     "location": "Remote",
     "email": "galan.carles@gmail.com",
-    "github": "https://github.com/Galan9999/CV-Astro",
+    "github": "https://github.com/Galan9999",
     "linkedin": "linkedin.com/in/carles-galán-bertran"
   },
   "stack": [
@@ -51,6 +51,11 @@
     { "skill": "Design Systems / Tokens",        "mastery": 80, "category": "craft"     }
   ],
   "education_extended": {
+    "master": {
+      "institution": "LIDR",
+      "degree": "Máster en AI Engineering — agentes y sistemas agénticos",
+      "year": "2026 — en curso"
+    },
     "tech": {
       "institution": "ISDI Coders",
       "degree": "Full Stack Web Development Bootcamp",
@@ -65,9 +70,47 @@
   },
   "personal_projects": [
     {
+      "id": "configpanel",
+      "name": "claude-config-panel",
+      "stack": ["Node.js", "JavaScript", "0 dependencies", "node:test", "GitHub Actions", "Claude Artifacts"],
+      "links": [
+        { "kind": "repo", "url": "https://github.com/Galan9999/claude-config-panel" }
+      ]
+    },
+    {
+      "id": "mcp",
+      "name": "mcp-gmail-personal · mcp-tool-template",
+      "stack": ["TypeScript", "MCP SDK", "stdio", "Zod", "OAuth2", "Gmail API", "Vitest", "Claude Code hooks"],
+      "links": [
+        { "kind": "repo", "label": "mcp-gmail-personal", "url": "https://github.com/Galan9999/mcp-gmail-personal" },
+        { "kind": "repo", "label": "mcp-tool-template", "url": "https://github.com/Galan9999/mcp-tool-template" }
+      ]
+    },
+    {
+      "id": "barbershop",
+      "name": "barbershop-booking",
+      "stack": ["Next.js 15", "TypeScript", "Supabase / Postgres", "Vercel", "Resend", "Clean Architecture", "Claude Code"],
+      "links": [
+        { "kind": "repo", "url": "https://github.com/Galan9999/barbershop-booking" }
+      ]
+    },
+    {
+      "id": "tameflow",
+      "name": "TameFlow",
+      "beta": true,
+      "stack": ["TypeScript", "Monorepo", "SDD", "Claude agents"],
+      "links": [
+        { "kind": "access", "url": "#contacto" }
+      ]
+    },
+    {
+      "id": "sentio",
       "name": "Sentio",
-      "description": "Ecosistema Full Stack modular. Arquitectura bajo principios SOLID, seguridad JWT, análisis estático con SonarCloud y auditoría de accesibilidad con Pa11y. Orquestado con CI/CD (GitHub Actions).",
-      "stack": ["React", "TypeScript", "Redux", "Express", "SonarCloud", "Pa11y", "GitHub Actions"]
+      "stack": ["React", "TypeScript", "Redux", "Express", "JWT", "Jest", "GitHub Actions", "Pa11y"],
+      "links": [
+        { "kind": "repo", "label": "front", "url": "https://github.com/Galan9999/Sentio-front" },
+        { "kind": "repo", "label": "back", "url": "https://github.com/Galan9999/Sentio-back" }
+      ]
     }
   ],
   "community": {

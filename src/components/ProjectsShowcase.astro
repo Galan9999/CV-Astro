@@ -1,0 +1,71 @@
+---
+import { defaultLang, type Lang, type UiKey } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+import cvData from '@data/cv.json';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
+type ProjectLink = { kind: string; url: string; label?: string };
+type Project = { id: string; name: string; stack: string[]; links: ProjectLink[]; beta?: boolean };
+
+const projects = cvData.personal_projects as Project[];
+
+const linkText = (link: ProjectLink) => {
+  if (link.kind === 'access') return t('projects.link.access');
+  return link.label ? `${t('projects.link.repo')} · ${link.label}` : t('projects.link.repo');
+};
+---
+
+<section id="proyectos" data-no-print class="mb-16" aria-labelledby="projects-heading">
+  <h2 id="projects-heading" class="text-xl font-semibold mb-3 flex items-center gap-2" style="color: var(--text-primary);">
+    <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
+    {t('nav.projects')}
+  </h2>
+  <p class="text-sm mb-6" style="color: var(--text-secondary); line-height: 1.7;">{t('projects.intro')}</p>
+
+  <ul class="space-y-4" role="list">
+    {projects.map(project => {
+      const isPrivate = project.links.every(link => link.kind === 'access');
+      return (
+        <li style="background: var(--bg-surface); border: var(--border-width) solid var(--border); border-radius: var(--radius); padding: 1.25rem;">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <h3 class="font-semibold font-mono text-sm" style="color: var(--text-primary);">{project.name}</h3>
+            {project.beta && (
+              <span class="font-mono text-xs px-2 rounded" style="border: var(--border-width) solid var(--accent-from); color: var(--accent-from);">{t('projects.badge.beta')}</span>
+            )}
+            {isPrivate && (
+              <span class="font-mono text-xs px-2 rounded" style="border: var(--border-width) solid var(--border); color: var(--text-secondary);">{t('projects.badge.private')}</span>
+            )}
+          </div>
+          <p class="text-sm mb-3" style="color: var(--text-secondary); line-height: 1.7;">{t(`projects.${project.id}.desc` as UiKey)}</p>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            {project.stack.map(badge => (
+              <span class="font-mono text-xs px-2 py-0.5 rounded" style="background: var(--bg-elevated); border: var(--border-width) solid var(--border); color: var(--text-secondary);">{badge}</span>
+            ))}
+          </div>
+          <div class="flex flex-wrap gap-4">
+            {project.links.map(link => {
+              const isExternal = link.url.startsWith('http');
+              return (
+                <a
+                  href={link.url}
+                  class="font-mono text-xs underline-offset-4 hover:underline"
+                  style="color: var(--accent-from);"
+                  {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {linkText(link)} →
+                </a>
+              );
+            })}
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+
+  <p class="text-sm mt-4 font-mono" style="color: var(--text-secondary); border-left: 2px solid var(--border); padding-left: 0.75rem;">
+    {t('projects.private.note')}
+  </p>
+</section>
