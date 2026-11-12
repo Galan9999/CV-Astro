@@ -11,5 +11,5 @@
     "Architecture et migration du frontend vers une structure de Design Tokens agnostiques et de tokens de composants, accélérant considérablement le développement des interfaces et la cohérence visuelle.",
     "Mise en place d'un flux d'AI-Driven Development, concevant des modules conceptuels (Gems) pour la gouvernance de l'architecture et orchestrant des agents (Claude) pour l'extraction automatique de designs, la génération de composants et la documentation cloud (AWS/S3)."
   ],
-  "stack": ["Spec-Driven Development", "AWS (S3)", "CASL", "Node.js", "Design Tokens", "TypeScript", "AI Tooling (Claude/Gems)"]
+  "stack": ["Spec-Driven Development", "AWS (S3)", "CASL", "Node.js", "Design Tokens", "TypeScript", "Claude Code (subagents, skills, hooks, MCP)"]
 }

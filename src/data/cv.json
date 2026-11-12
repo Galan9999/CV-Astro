@@ -8,8 +8,11 @@
     "linkedin": "linkedin.com/in/carles-galán-bertran"
   },
   "stack": [
-    "React 18", "TypeScript 5", "Redux Toolkit",
-    "CASL (RBAC)", "Vitest / Cypress", "SCSS Design Tokens"
+    { "id": "claude",   "items": ["Claude Code", "Subagents", "Skills", "Hooks", "Slash commands", "MCP servers", "claude -p (headless)", "Claude Artifacts", "Spec-Driven Development"] },
+    { "id": "aieng",    "items": ["LLM APIs", "CAG", "RAG", "Embeddings", "Vector DBs", "Hybrid search · reranking", "LangChain", "LangGraph", "LangSmith", "DeepEval", "RAGAS", "Guardrails", "LLMOps"] },
+    { "id": "frontend", "items": ["React 18", "TypeScript 5", "Redux Toolkit / Zustand", "CASL (RBAC)", "Astro", "Tailwind CSS", "SCSS Design Tokens", "Vitest / Cypress"] },
+    { "id": "backend",  "items": ["Node.js", "Next.js", "Supabase / Postgres", "REST APIs", "AWS S3"] },
+    { "id": "workflow", "items": ["Git", "GitHub Actions", "Notion", "Figma"] }
   ],
   "experience": [
     {
@@ -34,9 +37,9 @@
     "deploy":      "Static SSG — zero JS by default",
     "repo":        "https://github.com/Galan9999/CV-Astro",
     "ai_workflow": [
-      "ticket-flow — domain spec + typed ticket before code",
+      "Phased SDD pipeline — read, refine, dev, qa, sync with a pre-PR gate",
       "AGENTS.md + skills — shared human-agent context layers",
-      "Claude Code — spec-guided execution, grill-me and Notion sync"
+      "Claude Code — coordinator running tickets in parallel, human merges"
     ]
   },
   "skills_radar": [

@@ -14,7 +14,7 @@ import ProjectsShowcase from '@components/ProjectsShowcase.astro';
 import ClaudeAudits     from '@components/ClaudeAudits.astro';
 import { getCollection } from 'astro:content';
 import cvData           from '@data/cv.json';
-import { languages } from '../../i18n/ui';
+import { languages, type UiKey } from '../../i18n/ui';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -48,15 +48,22 @@ const currentYear     = new Date().getFullYear();
         <span class="font-mono text-sm" style="color: var(--accent-from);" aria-hidden="true">~/</span>
         {t('section.stack.heading')}
       </h2>
-      <div class="flex flex-wrap gap-2">
-        {stack.map(item => (
-          <span
-            class="font-mono text-xs px-3 py-1.5 rounded-md cursor-default transition-all duration-200"
-            style="background: var(--bg-surface); border: var(--border-width) solid var(--border); color: var(--text-secondary);"
-            data-tech-tag
-          >
-            {item}
-          </span>
+      <div class="space-y-4">
+        {stack.map(group => (
+          <div>
+            <h3 class="font-mono text-xs mb-2" style="color: var(--text-secondary);">{t(`stack.group.${group.id}` as UiKey)}</h3>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map(item => (
+                <span
+                  class="font-mono text-xs px-3 py-1.5 rounded-md cursor-default transition-all duration-200"
+                  style="background: var(--bg-surface); border: var(--border-width) solid var(--border); color: var(--text-secondary);"
+                  data-tech-tag
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>

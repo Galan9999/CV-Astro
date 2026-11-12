@@ -31,11 +31,7 @@ const languages_list: Array<{ labelKey: UiKey; levelKey: UiKey; pct: number }> =
   { labelKey: 'lang.fr',  levelKey: 'lang.level.b1b2_uncut', pct: 60  },
 ];
 
-const skillsMatrix: Record<string, string[]> = {
-  "Frontend":        ["React 18", "TypeScript 5", "Astro", "Tailwind CSS", "Redux / Zustand"],
-  "Backend & Infra": ["Node.js", "AWS S3", "REST APIs"],
-  "Workflow":        ["Spec-Driven Development", "Design Tokens", "CASL / RBAC", "AI Tooling", "Figma", "Git"],
-};
+const skillsMatrix = cvData.stack.map(group => [t(`stack.group.${group.id}` as UiKey), group.items] as const);
 
 const education = [
   { institution: "LIDR",        degree: t('education.master.degree'),       year: "2026" },
@@ -160,7 +156,7 @@ const githubProfile  = `https://github.com/${githubUsername}`;
       <section class="border-t border-neutral-200 pt-5 mt-5" aria-label="Habilidades técnicas">
         <h2 class="text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">{t('skills.print.heading').toUpperCase()}</h2>
         <div class="flex flex-col gap-4">
-          {Object.entries(skillsMatrix).map(([category, skills]) => (
+          {skillsMatrix.map(([category, skills]) => (
             <div>
               <p class="text-[10px] font-semibold text-neutral-500 mb-1.5">{category}</p>
               <div class="flex flex-wrap gap-1">
